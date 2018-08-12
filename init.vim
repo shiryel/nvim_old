@@ -19,7 +19,6 @@ call plug#begin()
 " Plug 'morhetz/gruvbox' " gruvbox
 " Plug 'joshdick/onedark.vim' " onedark
 Plug 'tomasiser/vim-code-dark' " codedark
-Plug 'ryanoasis/vim-devicons'
 
 "" Languages
 Plug 'sheerun/vim-polyglot' " A solid language pack for Vim (syntax, ident, compiler, etc...)
@@ -55,6 +54,10 @@ Plug 'cohama/lexima.vim' " Auto close parentheses and repeat by dot dot dot...
 Plug 'vim-airline/vim-airline' " lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
 "Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
+"
+"" Customization
+Plug 'tpope/vim-flagship'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 """ THEME
@@ -110,9 +113,6 @@ nnoremap <C-H> <C-W><C-H>
 "=========================================================
 """ PLUGINS CONFIGS
 
-"" vim-devicons
-set encoding=UTF-8
-
 "" Fzf
 " Ctrl+p navega por arquivo [usando o plug fzf]
 nnoremap <c-p> :Files<cr>
@@ -124,7 +124,7 @@ let g:UltiSnipsEditSplit = 'vertical' " Usa o ultisnips para abrir novos em jane
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
 
 "" NerdTree 
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 nmap <F6> :NERDTreeToggle<CR>
 
 "" TagBar 
@@ -144,6 +144,16 @@ let g:airline_powerline_fonts = 1
 "" Bufferline
 "let g:airline#extensions#bufferline#enabled = 1
 
+"" vim-flagship
+set laststatus=2
+set showtabline=2
+set guioptions-=e
+let g:tablabel =
+      \ "%N%{flagship#tabmodified()} %{flagship#tabcwds('shorten',',')}"
+autocmd User Flags call Hoist("buffer", "fugitive#statusline")
+
+"" vim-devicons
+set encoding=UTF-8
 
 "=========================================================
 """ CTAGS
