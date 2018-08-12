@@ -47,6 +47,7 @@ Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
 Plug 'majutsushi/tagbar' " Displays tags in a window, ordered by scope
 
 "" Miscellaneous
+Plug 'mhinz/vim-startify' " The fancy start screen for Vim
 Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " [INSTALLER] A command-line fuzzy finder 
 Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
@@ -142,6 +143,7 @@ let g:airline_powerline_fonts = 1
 
 "" Bufferline
 "let g:airline#extensions#bufferline#enabled = 1
+
 
 "=========================================================
 """ CTAGS
