@@ -85,10 +85,29 @@ let mapleader="\<space>"  " Define um learder
 
 " Apos apertar o leader e o comando ele executa a segunda sequencia
 nnoremap <leader>; A;<esc>
-" Abre o init.vim em uma nova janela
-nnoremap <leader>ie :vsplit ~/.config/nvim/init.vim<cr>  
+" Abre o init.vim 
+nnoremap <leader>ie :e ~/.config/nvim/init.vim<cr>  
 " Carrega o arquivo na memoria
 nnoremap <leader>ir :source ~/.config/nvim/init.vim<cr>  
+" Organizar buffers
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>b :bp<CR>
+nnoremap <Leader>f :bn<CR>
+nnoremap <Leader>g :e#<CR>
+
+" Re-map the buffers <Leader>b<number>b<new number>
+" Use the <Leader><number> to acess
+nnoremap <Leader>bn :echo bufnr('%')<CR>
+let a = 1
+let b = 1
+while a <= 30
+  while b <= 30
+    execute "nnoremap <Leader>b" . a . "b" . b . " :nnoremap<Leader>" . b . " :" . a . "b\<CR>"
+    let b += 1
+  endwhile
+  let b = 1
+  let a += 1
+endwhile
 
 " Disable keyboard arrows
 nnoremap <Left> :echo "No left for you!"<CR>
