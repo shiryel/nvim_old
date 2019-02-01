@@ -22,20 +22,28 @@ Plug 'tomasiser/vim-code-dark' " codedark
 
 "" Languages
 Plug 'sheerun/vim-polyglot' " A solid language pack for Vim (syntax, ident, compiler, etc...)
+Plug 'sbdchd/neoformat' " :Neoformat to format a buffer
 " Elixir plugins
 Plug 'slashmili/alchemist.vim' " Elixir Integration
 Plug 'c-brenn/phoenix.vim' " phoenix.vim: rails.vim inspired tools for Phoenix
+                           " gf -> juml | :Pserver | :Ppreview
 Plug 'tpope/vim-projectionist' " required for some navigation features in phoenix
+Plug 'mmorearty/elixir-ctags' " ctags -R to build
+Plug 'jadercorrea/elixir_generator.vim' " :EX -> prompt to include new modules and tests
 
 "" Completion and liting
-Plug 'neomake/neomake' " Asynchronous linting and make framework
-Plug 'Shougo/deoplete.nvim' " Dark powered asynchronous completion framework
-" Plug 'w0rp/ale' " Asynchronous Lint Engine
+"Plug 'neomake/neomake' " Asynchronous linting and make framework
+"Plug 'Shougo/deoplete.nvim' " Dark powered asynchronous completion framework
 " Plug 'roxma/nvim-completion-manager' " [DEPRECATED] Completion Framework
+Plug 'w0rp/ale' " Asynchronous linting/fixing for Vim and Language Server Protocol integration
+" Complementos para o ale
+Plug 'avh4/elm-format'
+Plug 'JakeBecker/elixir-ls'
+Plug 'prettier/prettier'
 
 "" Snippets
 Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
-"Plug 'honza/vim-snippets' " vim-snipmate default snippets (Previously snipmate-snippets)
+Plug 'honza/vim-snippets' " Snippet engine
 
 "" For Git
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
@@ -58,6 +66,7 @@ Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
 "" Customization
 Plug 'tpope/vim-flagship'
 Plug 'ryanoasis/vim-devicons'
+Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 call plug#end()
 
 """ THEME
@@ -87,6 +96,7 @@ let mapleader="\<space>"  " Define um learder
 nnoremap <leader>; A;<esc>
 " Abre o init.vim 
 nnoremap <leader>ie :e ~/.config/nvim/init.vim<cr>  
+nnoremap <leader>is :e ~/.config/nvim/UltiSnips/
 " Carrega o arquivo na memoria
 nnoremap <leader>ir :source ~/.config/nvim/init.vim<cr>  
 " Organizar buffers
@@ -139,8 +149,12 @@ nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
 
 "" UltiSnips
-let g:UltiSnipsEditSplit = 'vertical' " Usa o ultisnips para abrir novos em janela vertical
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
+let g:UltiSnipsEditSplit = 'vertical' " Usa o ultisnips para abrir novos em janela vertical
+let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+"call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
 "" NerdTree 
 "autocmd vimenter * NERDTree
@@ -150,8 +164,8 @@ nmap <F6> :NERDTreeToggle<CR>
 nmap <F7> :TagbarToggle<CR>
 
 "" Neomake 
-let g:deoplete#enable_at_startup = 1
-autocmd! BufWritePost * Neomake
+"let g:deoplete#enable_at_startup = 1
+"autocmd! BufWritePost * Neomake
 
 "" Alchemist 
 let g:alchemist_tag_disable = 1
@@ -173,6 +187,21 @@ autocmd User Flags call Hoist("buffer", "fugitive#statusline")
 
 "" vim-devicons
 set encoding=UTF-8
+
+"" ale
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+
+"" elm-format / elm-vim
+let g:elm_jump_to_error = 0
+let g:elm_make_output_file = "elm.js"
+let g:elm_make_show_warnings = 0
+let g:elm_syntastic_show_warnings = 0
+let g:elm_browser_command = ""
+let g:elm_detailed_complete = 0
+let g:elm_format_autosave = 1
+let g:elm_format_fail_silently = 0
+let g:elm_setup_keybindings = 1
 
 "=========================================================
 """ CTAGS
