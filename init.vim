@@ -28,7 +28,7 @@ Plug 'slashmili/alchemist.vim' " Elixir Integration
 Plug 'c-brenn/phoenix.vim' " phoenix.vim: rails.vim inspired tools for Phoenix
                            " gf -> juml | :Pserver | :Ppreview
 Plug 'tpope/vim-projectionist' " required for some navigation features in phoenix
-Plug 'mmorearty/elixir-ctags' " ctags -R to build
+"Plug 'mmorearty/elixir-ctags' " ctags -R to build
 Plug 'jadercorrea/elixir_generator.vim' " :EX -> prompt to include new modules and tests
 
 "" Completion and liting
@@ -38,8 +38,8 @@ Plug 'jadercorrea/elixir_generator.vim' " :EX -> prompt to include new modules a
 Plug 'w0rp/ale' " Asynchronous linting/fixing for Vim and Language Server Protocol integration
 " Complementos para o ale
 Plug 'avh4/elm-format'
-Plug 'JakeBecker/elixir-ls'
-Plug 'prettier/prettier'
+"Plug 'JakeBecker/elixir-ls'
+"Plug 'prettier/prettier'
 
 "" Snippets
 Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
