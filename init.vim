@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-=======
-" C-] -> go to definition
-" K -> open documentation
-" C-X or C-O autocomplete with deoplete
-
-"" Integrations
-" Mix: :Mix -> ex: :Mix test
-" IEx: :IEx
-" Phoenix: use gf to jump between files, :h phoenix for more
-
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -23,7 +11,6 @@ call plug#begin()
 
 Plug 'tomasiser/vim-code-dark' " codedark
 
-<<<<<<< HEAD
 """"""""""""""""""""""" Snippets: """"""""""""""""""""""" 
 "Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
 "Plug 'honza/vim-snippets' " ultisnips engine
@@ -34,96 +21,12 @@ Plug 'tomasiser/vim-code-dark' " codedark
   "let g:UltiSnipsJumpBackwardTrigger="<c-w>"
   "let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
   "let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
-=======
-""""""""""""""""""""""" Language Suport: """"""""""""""""""""""" 
-Plug 'sheerun/vim-polyglot' " Language suport on demand
-
-Plug 'c-brenn/phoenix.vim' " To jump between files
-Plug 'tpope/vim-projectionist' " required for some navigation features
-
-""""""""""""""""""""""" Completion And Liting: """"""""""""""""""""""" 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Dark powered asynchronous completion framework
-  let g:deoplete#enable_at_startup = 1
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-Plug 'neomake/neomake' " Asynchronous linting and make framework; Neomake is a plugin for Vim/Neovim to asynchronously run programs.<Paste>
-  let g:neomake_markdown_enabled_makers = [] " Don't tell to use smartquotes in markdown
-  augroup neomake
-    autocmd! BufWritePost * Neomake " Run Neomake when I save any buffer
-  augroup END
-  "
-  "" FOR ELIXIR:
-  " Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
-  let g:neomake_elixir_enabled_makers = ['mycredo']
-  function! NeomakeCredoErrorType(entry)
-    if a:entry.type ==# 'F'      " Refactoring opportunities
-      let l:type = 'W'
-    elseif a:entry.type ==# 'D'  " Software design suggestions
-      let l:type = 'I'
-    elseif a:entry.type ==# 'W'  " Warnings
-      let l:type = 'W'
-    elseif a:entry.type ==# 'R'  " Readability suggestions
-      let l:type = 'I'
-    elseif a:entry.type ==# 'C'  " Convention violation
-      let l:type = 'W'
-    else
-      let l:type = 'M'           " Everything else is a message
-    endif
-    let a:entry.type = l:type
-  endfunction
-  let g:neomake_elixir_mycredo_maker = {
-        \ 'exe': 'mix',
-        \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
-        \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
-        \ 'postprocess': function('NeomakeCredoErrorType')
-        \ }
-  "let g:neomake_elixir_enabled_makers = ['mix', 'credo']
-  " TODO?: substituir credo pelo nome do projeto
-
-""""""""""""""""""""""" Languages For Deoplete: """"""""""""""""""""""" 
-" Language Server Protocol:
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-  " Required for operations modifying multiple buffers like rename.
-  set hidden
-  let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ }
-  nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-  " Or map each action separately
-  nnoremap <silent> J :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-Plug 'slashmili/alchemist.vim' " Elixir
-
-Plug 'deoplete-plugins/deoplete-jedi' " Python
-
-" TODO: add ELM support
-
-""""""""""""""""""""""" Snippets: """"""""""""""""""""""" 
-Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
-Plug 'honza/vim-snippets' " ultisnips engine
-  " Trigger configuration. Do not use <tab> if you use
-  " https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger="<c-tab>"
-  let g:UltiSnipsJumpForwardTrigger="<c-q>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-w>"
-  let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
-  let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 
 """"""""""""""""""""""" For Git: """"""""""""""""""""""" 
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 
 Plug 'Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status
 
-<<<<<<< HEAD
 """"""""""""""""""""""" NerdTree: """"""""""""""""""""""
 Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
   nmap <F6> :NERDTreeToggle<CR>
@@ -166,40 +69,6 @@ Plug 'mhinz/vim-startify' " The fancy start screen for Vim
 "Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
   "let g:airline#extensions#bufferline#enabled = 1
   
-=======
-""""""""""""""""""""""" Bars: """"""""""""""""""""""" 
-Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
-  nmap <F6> :NERDTreeToggle<CR>
-  "autocmd vimenter * NERDTree
-
-Plug 'majutsushi/tagbar' " Displays tags in a window, ordered by scope
-  nmap <F7> :TagbarToggle<CR>
-
-""""""""""""""""""""""" Ctags: """"""""""""""""""""""" 
-" Plug 'ludovicchabant/vim-gutentags'
-"   let g:gutentags_cache_dir = '~/.tags_cache'
-
-""""""""""""""""""""""" Miscellaneous: """"""""""""""""""""""" 
-Plug 'mhinz/vim-startify' " The fancy start screen for Vim
-
-Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " [INSTALLER] A command-line fuzzy finder 
-Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
-  " Ctrl+p navega por arquivo [usando o plug fzf]
-  nnoremap <c-p> :Files<cr>
-  " Ctrl+f mostra todas ocorrencias de uma palavra no arquivo [usando o plug fzf e o programa the-silver-search (integrado altomaticamente com o fzf)]
-  nnoremap <c-f> :Ag<space>
-
-Plug 'vim-airline/vim-airline' " lean & mean status/tabline for vim that's light as air
-Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
-  let g:airline_powerline_fonts = 1
-  "let g:airline_symbols.linenr = 'Ξ' " Desbuga o LN
-
-Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
-"Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
-  "let g:airline#extensions#bufferline#enabled = 1
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 "Plug 'cohama/lexima.vim' " Auto close parentheses and repeat by dot dot dot...
 
 """"""""""""""""""""""" Customization: """"""""""""""""""""""" 
@@ -218,26 +87,11 @@ Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 
 call plug#end()
 
-<<<<<<< HEAD
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""" PLUGINS SPECIAL CONFIGS """""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""" Themes: """""""""""""""""""""""""""""""""
-=======
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""" PLUGINS SPECIAL CONFIGS """""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""" Snippets: """""""""""""""""""""""""""""""""
-call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""" THEME """""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 colorscheme codedark
 set background=dark
 
@@ -248,13 +102,6 @@ set background=dark
 """""""""""""""""""""""" VIM CONFIGS """"""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-<<<<<<< HEAD
-=======
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""" VIM CONFIGS """""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 set hidden  " Deixa voce abrir um novo arquivo na mesma tela sem tem que salvar o anterior [mas avisara caso voce tente fechar]
 set number  " Mostra os numeros nas linhas
 set relativenumber  " Os numeros sao relativos a linha posicinadas *otimo para saltos*
@@ -318,7 +165,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-<<<<<<< HEAD
 """"""""""""""""""""" FILE TYPE EXTENSION """""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -327,31 +173,3 @@ au BufRead,BufNewFile *.exs set filetype=elixir
 au BufRead,BufNewFile *.elm set filetype=elm
 
 filetype plugin on
-=======
-""""""""""""""""""""""""" CTAGS """""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" TODO: Add the url in ~/.ctags
-" https://raw.githubusercontent.com/mmorearty/elixir-ctags/master/.ctags
-" Exclude the tagbar type elixir?
-" Verify if ctags is installed
-
-"" Elixir configs for tagsbar plugin
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records',
-        \ 't:tests'
-    \ ]
-\ }
->>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
