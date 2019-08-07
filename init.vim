@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 " C-] -> go to definition
 " K -> open documentation
 " C-X or C-O autocomplete with deoplete
@@ -7,6 +9,7 @@
 " IEx: :IEx
 " Phoenix: use gf to jump between files, :h phoenix for more
 
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,6 +23,18 @@ call plug#begin()
 
 Plug 'tomasiser/vim-code-dark' " codedark
 
+<<<<<<< HEAD
+""""""""""""""""""""""" Snippets: """"""""""""""""""""""" 
+"Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
+"Plug 'honza/vim-snippets' " ultisnips engine
+  " Trigger configuration. Do not use <tab> if you use
+  " https://github.com/Valloric/YouCompleteMe.
+  "let g:UltiSnipsExpandTrigger="<c-tab>"
+  "let g:UltiSnipsJumpForwardTrigger="<c-q>"
+  "let g:UltiSnipsJumpBackwardTrigger="<c-w>"
+  "let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
+  "let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+=======
 """"""""""""""""""""""" Language Suport: """"""""""""""""""""""" 
 Plug 'sheerun/vim-polyglot' " Language suport on demand
 
@@ -101,12 +116,57 @@ Plug 'honza/vim-snippets' " ultisnips engine
   let g:UltiSnipsJumpBackwardTrigger="<c-w>"
   let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
   let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 
 """"""""""""""""""""""" For Git: """"""""""""""""""""""" 
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 
 Plug 'Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status
 
+<<<<<<< HEAD
+""""""""""""""""""""""" NerdTree: """"""""""""""""""""""
+Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
+  nmap <F6> :NERDTreeToggle<CR>
+  "autocmd vimenter * NERDTree
+
+""""""""""""""""""""""" Ctags: """""""""""""""""""""""""
+" OBS: Ctag is necessary in the system
+" Plug 'ludovicchabant/vim-gutentags'
+"   let g:gutentags_cache_dir = '~/.tags_cache'
+
+"Plug 'majutsushi/tagbar' " Displays tags in a window, ordered by scope
+"   nmap <F7> :TagbarToggle<CR>
+
+""""""""""""""""""""""" Vim-Airline: """""""""""""""""""
+
+"Plug 'vim-airline/vim-airline' " lean & mean status/tabline for vim that's light as air
+"Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
+  "let g:airline_powerline_fonts = 1
+  "let g:airline_symbols.linenr = 'Ξ' " Desbuga o LN
+  "let g:airline_theme = 'badwolf' " Exclusive theme for airline_theme
+
+""""""""""""""""""""""" FZF: """""""""""""""""""
+  
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " [INSTALLER] A command-line fuzzy finder 
+Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
+
+" Ctrl+p navega por arquivo [usando o plug fzf]
+  nnoremap <c-p> :Files<cr>
+  
+" Ctrl+f mostra todas ocorrencias de uma palavra no arquivo [usando o plug fzf e o programa the-silver-search (integrado altomaticamente com o fzf)]
+  nnoremap <c-f> :Ag<space>
+  
+""""""""""""""""""" Miscellaneous: """""""""""""""""""""
+Plug 'mhinz/vim-startify' " The fancy start screen for Vim
+
+"Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
+
+"Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
+
+"Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
+  "let g:airline#extensions#bufferline#enabled = 1
+  
+=======
 """"""""""""""""""""""" Bars: """"""""""""""""""""""" 
 Plug 'scrooloose/nerdtree' " A tree explorer plugin for vim
   nmap <F6> :NERDTreeToggle<CR>
@@ -139,6 +199,7 @@ Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
 Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
 "Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
   "let g:airline#extensions#bufferline#enabled = 1
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 "Plug 'cohama/lexima.vim' " Auto close parentheses and repeat by dot dot dot...
 
 """"""""""""""""""""""" Customization: """"""""""""""""""""""" 
@@ -157,6 +218,13 @@ Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 
 call plug#end()
 
+<<<<<<< HEAD
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""" PLUGINS SPECIAL CONFIGS """""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""" Themes: """""""""""""""""""""""""""""""""
+=======
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" PLUGINS SPECIAL CONFIGS """""""""""""""""
@@ -169,20 +237,29 @@ call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 """"""""""""""""""""""""" THEME """""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 colorscheme codedark
-let g:airline_theme = 'badwolf' " Exclusive theme for airline_theme
-"set background=dark
+set background=dark
 
+""""""""""""""""""""""" Snippets: """""""""""""""""""""""""""""""""
+"call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""" VIM CONFIGS """"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+<<<<<<< HEAD
+=======
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" VIM CONFIGS """""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
 set hidden  " Deixa voce abrir um novo arquivo na mesma tela sem tem que salvar o anterior [mas avisara caso voce tente fechar]
 set number  " Mostra os numeros nas linhas
 set relativenumber  " Os numeros sao relativos a linha posicinadas *otimo para saltos*
 set mouse=a  " Habilita o mouse
 set inccommand=split  " Habilita visualizaçao de alteraçoes pelos comandos
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab " Tabs viram 2 espaços
 
 "" Transparent background
 hi Normal guibg=NONE ctermbg=NONE
@@ -241,6 +318,16 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+<<<<<<< HEAD
+""""""""""""""""""""" FILE TYPE EXTENSION """""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au BufRead,BufNewFile *.ex set filetype=elixir
+au BufRead,BufNewFile *.exs set filetype=elixir
+au BufRead,BufNewFile *.elm set filetype=elm
+
+filetype plugin on
+=======
 """"""""""""""""""""""""" CTAGS """""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -267,3 +354,4 @@ let g:tagbar_type_elixir = {
         \ 't:tests'
     \ ]
 \ }
+>>>>>>> d2ac73342e1fc65bf1cfe75b6d31187ff0042688
