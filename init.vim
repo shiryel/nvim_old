@@ -26,10 +26,13 @@ Plug 'tomasiser/vim-code-dark' " codedark
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
 
 Plug 'Xuyuanp/nerdtree-git-plugin' " A plugin of NERDTree showing git status
+  " To not open files and other buffers on NerdTree window
+  autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 """"""""""""""""""""""" NerdTree: """"""""""""""""""""""
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " A tree explorer plugin for vim
   nmap <F6> :NERDTreeToggle<CR>
+  let NERDTreeShowHidden=1
   "autocmd vimenter * NERDTree
 
 """"""""""""""""""""""" Ctags: """""""""""""""""""""""""
@@ -85,11 +88,15 @@ Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
   noremap <Leader>M :Maps<CR>
   " Serach for the sintax file type
   noremap <Leader>s :Filetypes<CR>
+  "
+""""""""""""""""""""" Motion: """"""""""""""""""""""""""
+Plug 'justinmk/vim-sneak'
+  let g:sneak#label = 1
+
+"Plug 'easymotion/vim-easymotion' " For easy motion on text, default leader: <leader><leader>
 
 """"""""""""""""""" Miscellaneous: """""""""""""""""""""
 Plug 'mhinz/vim-startify' " The fancy start screen for Vim
-
-Plug 'easymotion/vim-easymotion' " For easy motion on text, default leader: <leader><leader>
 
 "Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
 
@@ -121,7 +128,7 @@ Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
 
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' } " Elixir Integration (can jump with deoplete)
-  let g:alchemist_tag_map = '<c-j>'
+  let g:alchemist_tag_map = '<c-J>'
   let g:alchemist_tag_stack_map = '<c-t>'
 
 Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' } " phoenix.vim: rails.vim inspired tools for Phoenix
@@ -290,6 +297,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Deselect seach
+map <Leader><Space> :noh<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""" FILE TYPE EXTENSION """""""""""""""""""""""""
