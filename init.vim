@@ -12,15 +12,15 @@ call plug#begin()
 Plug 'tomasiser/vim-code-dark' " codedark
 
 """"""""""""""""""""""" Snippets: """"""""""""""""""""""" 
-"Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
+Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
 "Plug 'honza/vim-snippets' " ultisnips engine
   " Trigger configuration. Do not use <tab> if you use
   " https://github.com/Valloric/YouCompleteMe.
-  "let g:UltiSnipsExpandTrigger="<c-tab>"
-  "let g:UltiSnipsJumpForwardTrigger="<c-q>"
-  "let g:UltiSnipsJumpBackwardTrigger="<c-w>"
-  "let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
-  "let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
+"  let g:UltiSnipsExpandTrigger="<c-tab>"
+"  let g:UltiSnipsJumpForwardTrigger="<c-q>"
+"  let g:UltiSnipsJumpBackwardTrigger="<c-w>"
+  let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips' " Diretorio dos snippets
+"  let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
 
 """"""""""""""""""""""" For Git: """"""""""""""""""""""" 
 Plug 'tpope/vim-fugitive' " A Git wrapper so awesome, it should be illegal
@@ -121,105 +121,57 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""" Elixir: """""""""""""""""""""""""""""
+"""""""""""""""""""""""""" COC: """""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""" Integration: """"""""""""""""""""""" 
+" TODO: verify if NixOS can do it with:
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Nequirements:
+" [nodejs, yarn]
+" yarn config set prefix ~/.yarn
+" echo 'export PATH="~/.yarn/bin/:$PATH"' >> .profile
+
+" NixOs_requeriment:
+"set shell=/bin/sh
+
+" Snippets:
+" Install coc-snippets with:
+" :CocInstall coc-snippets
+
+""""""""""""""""""""""" Elixir: """""""""""""""""""""""""""""
+Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o release'}
+"
+" Add to :CocConfig on "languageserver"
+" "elixirLS": {
+"   "command": "~/.config/nvim/plugged/elixir-ls/release/language_server.sh",
+"   "filetypes": ["elixir", "eelixir"]
+" }
+
 Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
 
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' } " Elixir Integration (can jump with deoplete)
-  let g:alchemist_tag_map = '<c-J>'
-  let g:alchemist_tag_stack_map = '<c-t>'
+"" Credo integration:
+"Plug 'neomake/neomake', { 'for': 'elixir' }
+"    let g:neomake_elixir_enabled_makers = ['credo']
+"    autocmd! BufWritePost *.ex Neomake
+"    autocmd! BufWritePost *.exs Neomake
 
-Plug 'c-brenn/phoenix.vim', { 'for': 'elixir' } " phoenix.vim: rails.vim inspired tools for Phoenix
-                           " gf -> juml | :Pserver | :Ppreview
-Plug 'tpope/vim-projectionist', { 'for': 'elixir' } " required for some navigation features in phoenix
-
-"" Completion and liting
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'for': 'elixir' }
-else
-  Plug 'Shougo/deoplete.nvim', { 'for': 'elixir' }
-  Plug 'roxma/nvim-yarp', { 'for': 'elixir' }
-  Plug 'roxma/vim-hug-neovim-rpc', { 'for': 'elixir' }
-endif
-  let g:deoplete#enable_at_startup = 1
-
-if !has("python3")
-  echo "python3 missing"
-  echo "run: pip3 install --user pynvim"
-  echo "then run on vim: :UpdateRemotePlugins"
-endif
-
-""""""""""""""""""""""" Miscellaneous: """"""""""""""""""""""" 
-Plug 'mmorearty/elixir-ctags', { 'for': 'elixir' } " ctags -R to build
-    let g:tagbar_type_elixir = {
-        \ 'ctagstype' : 'elixir',
-        \ 'kinds' : [
-            \ 'f:functions',
-            \ 'functions:functions',
-            \ 'c:callbacks',
-            \ 'd:delegates',
-            \ 'e:exceptions',
-            \ 'i:implementations',
-            \ 'a:macros',
-            \ 'o:operators',
-            \ 'm:modules',
-            \ 'p:protocols',
-            \ 'r:records',
-            \ 't:tests'
-        \ ]
-    \ }
-
-"""""""""""""""""""""""" Format: """"""""""""""""""""""""""""""
-Plug 'mhinz/vim-mix-format', { 'for': 'elixir' }
-    let g:mix_format_on_save = 1
-
-"""""""""""""""""" Credo integration: """"""""""""""""""""""""""""""
-Plug 'neomake/neomake', { 'for': 'elixir' }
-    let g:neomake_elixir_enabled_makers = ['credo']
-    autocmd! BufWritePost *.ex Neomake
-    autocmd! BufWritePost *.exs Neomake
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""" Elm: """""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" yarn global add elm elm-format elm-live elm-test
 
-""""""""""""""""""""""" Language Suport: """"""""""""""""""""""" 
-Plug 'elmcast/elm-vim', {'do': 'yarn glogal add elm elm-test elm-oracle elm-format', 'for': 'elm' }
-" Requirements:
-" yarn global add elm           # base
-" yarn global add elm-test      # run unit tests
-" yarn global add elm-oracle    # code completion and doc lookups
-" yarn global add elm-format    # automatically format
+"" Sintax highlighting, Automatic indentation
+Plug 'andys8/vim-elm-syntax'
 
-let g:elm_jump_to_error = 1
-let g:elm_make_output_file = "elm.min.js"
-let g:elm_make_show_warnings = 1
-let g:elm_syntastic_show_warnings = 1
-let g:elm_browser_command = ""
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-let g:elm_format_fail_silently = 0
-let g:elm_setup_keybindings = 1
+" Add to :CocConfig on "languageserver"
+" "elmLS": {
+"   "command": "/home/vinicius1/.yarn/bin/elm-language-server",
+"   "filetypes": ["elm"],
+"   "rootPatterns": ["elm.json"],
+"   "initializationOptions": {
+"   "elmAnalyseTrigger": "change" 
+" }
 
-" Usage:
-" :help elm-vim
 
-""""""""""""""""""""""""""" Completion: """"""""""""""""""""""""
-Plug 'dense-analysis/ale', { 'for': 'elm' }
-Plug 'vim-syntastic/syntastic', { 'for': 'elm' }
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:elm_syntastic_show_warnings = 1
-    
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py', 'for': 'elm' }
-    let g:ycm_semantic_triggers = {
-        \ 'elm' : ['.'],
-        \}
-
-" TODO: add deoplete?
-    
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,7 +189,141 @@ set background=dark
 """""""""""""""""""""""" VIM CONFIGS """"""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set hidden  " Deixa voce abrir um novo arquivo na mesma tela sem tem que salvar o anterior [mas avisara caso voce tente fechar]
+"""""""""""""""""""""""" COC: """""""""""""""""""""""""""""""""""""
+
+" if hidden is not set, TextEdit might fail.
+" Deixa voce abrir um novo arquivo na mesma tela sem tem que salvar o anterior [mas avisara caso voce tente fechar]
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=3
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=3000
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set number  " Mostra os numeros nas linhas
 set relativenumber  " Os numeros sao relativos a linha posicinadas *otimo para saltos*
 set mouse=a  " Habilita o mouse
@@ -307,8 +393,9 @@ map <Leader><Space> :noh<CR>
 
 au BufRead,BufNewFile *.ex set filetype=elixir
 au BufRead,BufNewFile *.exs set filetype=elixir
-au BufRead,BufNewFile *.elm set filetype=elm
 
-filetype plugin on
+au FileType elm set tabstop=4
+au FileType elm set shiftwidth=4
+au FileType elm set expandtab
 
 autocmd VimEnter * source ~/.config/nvim/init.vim

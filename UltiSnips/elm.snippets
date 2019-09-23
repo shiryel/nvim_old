@@ -1,0 +1,37 @@
+snippet uiModule "Module for a Elm-UI component" b
+module $1 exposing (init, update, view, Model, Msg)
+
+import Element exposing (..)
+import Element.Border as Border
+import Element.Background as Background
+import Element.Events as Events
+import Element.Font as Font
+import Html exposing (Html)
+
+type alias Model =
+    { $2
+    }
+
+type Msg
+    = $3
+
+init : Model
+init = 
+    { $4 
+    }
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        $5
+
+view : Model -> Html Msg
+view model =
+    layout
+        [ $6
+	]
+	(
+	$7
+	)
+
+endsnippet
