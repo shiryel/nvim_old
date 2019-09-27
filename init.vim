@@ -157,14 +157,16 @@ Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim
 "    autocmd! BufWritePost *.exs Neomake
 
 """"""""""""""""""""""" Elm: """""""""""""""""""""""""""""
-" yarn global add elm elm-format elm-live elm-test
+" yarn add elm elm-format elm-live elm-test
+" yarn global add @elm-tooling/elm-language-server
+" if necessary use --ignore-engines
 
 "" Sintax highlighting, Automatic indentation
 Plug 'andys8/vim-elm-syntax'
 
 " Add to :CocConfig on "languageserver"
 " "elmLS": {
-"   "command": "/home/vinicius1/.yarn/bin/elm-language-server",
+"   "command": "~/.yarn/bin/elm-language-server",
 "   "filetypes": ["elm"],
 "   "rootPatterns": ["elm.json"],
 "   "initializationOptions": {
@@ -200,7 +202,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=3
+set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=3000
@@ -272,9 +274,9 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" Remap for do codeAction of selected region, ex: `<leader>AAp` for current paragraph
+xmap <leader>A  <Plug>(coc-codeaction-selected)
+nmap <leader>A  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -306,7 +308,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands

@@ -1,15 +1,15 @@
 {
   "languageserver": {
      "elixirLS": {
-      "command": "/home/vinicius1/.config/nvim/plugged/elixir-ls/release/language_server.sh",
+      "command": "~/.config/nvim/plugged/elixir-ls/release/language_server.sh",
       "filetypes": ["elixir", "eelixir"]
      },
     "elmLS": {
-      "command": "/home/vinicius1/.yarn/bin/elm-language-server",
+      "command": "~/.yarn/bin/elm-language-server",
       "filetypes": ["elm"],
       "rootPatterns": ["elm.json"],
       "initializationOptions": {
-        "elmAnalyseTrigger": "change" 
+        "elmAnalyseTrigger": "change"
       }
     }
   },
