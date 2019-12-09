@@ -7,8 +7,8 @@ export reset=`tput sgr0`
 
 if [ `whoami` == "root" ]; then
     mv $SCRIPTPATH ../nvim
-    pacman -S powerline2 awesome-terminal-fonts ttf-nerd-fonts-symbols
- powerline-fonts fzf
+    pacman -S powerline2 awesome-terminal-fonts powerline-fonts fzf python-pynvim
+#ttf-nerd-fonts-symbols
 else
     echo "${red}ERROR: Run with root${reset}"
 fi
