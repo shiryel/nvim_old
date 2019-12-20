@@ -3,9 +3,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 runtime! src/plugins.vim
-runtime! src/general.vim
 runtime! src/configs.vim
-runtime! src/status-line.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""" FILE TYPE EXTENSION """""""""""""""""""""""""

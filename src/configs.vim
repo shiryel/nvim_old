@@ -1,4 +1,120 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""" GENERAL """""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+colorscheme badwolf
+"let g:lightline = { 'colorscheme': 'gruvbox' }
+
+"" Set <Leader>
+let mapleader="\<space>"
+
+" Open configs
+nnoremap <leader><Leader>i :e ~/.config/nvim/init.vim<cr>  
+nnoremap <leader><Leader>c :e ~/.config/nvim/src/configs.vim<cr>  
+nnoremap <leader><Leader>p :e ~/.config/nvim/src/plugins.vim<cr>  
+nnoremap <leader><Leader>s :e ~/.config/nvim/UltiSnips/
+" Load new configs
+nnoremap <leader><Leader>r :source ~/.config/nvim/init.vim<cr>  
+
+" Buffers moves
+nnoremap <Leader>bl :ls<CR>
+nnoremap <Leader>bb :bp<CR>
+nnoremap <Leader>bf :bn<CR>
+nnoremap <Leader>bg :e#<CR>
+
+" Split moves
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Deselect seach
+map <Leader>/ :noh<CR>
+
+" Convert existing tabs
+nnoremap <Leader><Tab> :retab<CR>
+
+" Disable keyboard arrows
+nnoremap <Left> :echo "No left for you!"<CR>
+vnoremap <Left> :<C-u>echo "No left for you!"<CR>
+"inoremap <Left> <C-o>:echo "No left for you!"<CR>
+nnoremap <Right> :echo "No left for you!"<CR>
+vnoremap <Right> :<C-u>echo "No left for you!"<CR>
+"inoremap <Right> <C-o>:echo "No left for you!"<CR>
+nnoremap <Up> :echo "No left for you!"<CR>
+vnoremap <Up> :<C-u>echo "No left for you!"<CR>
+"inoremap <Up> <C-o>:echo "No left for you!"<CR>
+nnoremap <Down> :echo "No left for you!"<CR>
+vnoremap <Down> :<C-u>echo "No left for you!"<CR>
+"inoremap <Down> <C-o>:echo "No left for you!"<CR>
+
+syntax enable
+
+" Colors and styling 
+highlight Comment cterm=italic
+hi link xmlEndTag xmlTag
+hi htmlArg gui=italic
+hi Comment gui=italic
+hi Type gui=italic
+hi htmlArg cterm=italic
+hi Comment cterm=italic
+hi Type cterm=italic
+set termguicolors " to work with 16M colors schemes in the terminal
+
+" Spaces and Tabs
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+
+" UI Config
+set encoding=utf8
+set inccommand=nosplit " Give us a realtime preview of substitution before we send it
+set list " show formating characters
+set lcs=eol:¬,extends:❯,precedes:❮,tab:>- " the formating characters
+set number " show line number
+set relativenumber " line number is relative to cursor
+set mouse=a " enable mouse
+set noruler " hide the column and line of the pointer
+set nocursorline " dont highlight the current cursor line
+set smartindent " smart ident (priority for C like langs)
+set autoindent " copy the ident of current line when using the o or O commands
+set wrap " continue long lines in the next line
+set linebreak
+set wildmenu " menu inline (ex: completion)
+set lazyredraw " screen will not redrawn while exec macros, registers or not typed commands
+set showmatch " jump to a match when executed
+set noshowmode " lightline shows the status not vim
+set showtabline=2 " always show files with tab page labels
+set shortmess=a " avoid hit-enter prompts, a = abbreviation without loss
+set updatetime=300 " time (ms) to save in swap
+set signcolumn=no " hide the column for error signs
+set showcmd " show commands in the last line off screen
+
+" Searching 
+set incsearch " show when typing
+set hlsearch " highlight
+set nosmartcase " do not override the ignorecase option
+set ignorecase " ignorecase option :P
+
+" Folding 
+set foldenable " use zi to togle folding
+set foldlevelstart=1 " some folds closed when start editing
+set foldnestmax=10 " limit the folds in the indent and syntax
+
+set nobackup " no backup file when overwriting
+set nowritebackup " no make backup before overwriting
+set swapfile " enable swapfile (dont use it with confidential information, that even root must not be able to acess!)
+set hidden " buffer continue to exists when the file is abandoned
+set history=100 " history of the : commands
+set path+=** " list of directories which will be searched when using the |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands
+set splitbelow " default split below
+set diffopt=vertical " default diff split in the vertical
+
+" completion menu
+set completeopt=menu,menuone,preview,noselect,noinsert
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -15,10 +131,15 @@
   " To not open files and other buffers on NerdTree window
   autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
+""""""""""""""""""""" Lightline-bufferline """""""""""""
+
+"let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+"let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+"let g:lightline.component_type   = {'buffers': 'tabsel'}
+
 """"""""""""""""""""""" NerdTree: """"""""""""""""""""""
   nmap <F6> :NERDTreeToggle<CR>
   let NERDTreeShowHidden=1
-  "autocmd vimenter * NERDTree
 
 """"""""""""""""""""""" FZF: """""""""""""""""""
   " Search on git versioned files
@@ -60,14 +181,9 @@
 """"""""""""""""""""""" Snippets: """""""""""""""""""""""""""""""""
 "call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""" VIM CONFIGS """"""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""" COC: """""""""""""""""""""""""""""""""""""
 
 " if hidden is not set, TextEdit might fail.
-" Deixa voce abrir um novo arquivo na mesma tela sem tem que salvar o anterior [mas avisara caso voce tente fechar]
 set hidden
 
 " Some servers have issues with backup files, see #649
@@ -78,13 +194,10 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=3000
+set updatetime=300
 
 " don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
+"set shortmess+=c
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -99,27 +212,27 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
+" Use <c-space> (i mode) to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Use gh to show documentation in preview window
+nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -133,11 +246,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>r <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -148,8 +261,8 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>AAp` for current paragraph
-xmap <leader>A  <Plug>(coc-codeaction-selected)
-nmap <leader>A  <Plug>(coc-codeaction-selected)
+xmap <leader>A <Plug>(coc-codeaction-selected)
+nmap <leader>A <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -171,95 +284,28 @@ xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>e :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>c :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>o :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <leader>j :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>k :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set number  " Mostra os numeros nas linhas
-set relativenumber  " Os numeros sao relativos a linha posicinadas *otimo para saltos*
-set mouse=a  " Habilita o mouse
-set inccommand=split  " Habilita visualizaçao de alteraçoes pelos comandos
-
-"" Transparent background
-hi Normal guibg=NONE ctermbg=NONE
-highlight clear LineNr
-highlight clear EndOfBuffer
-hi NonText ctermbg=NONE ctermbg=NONE
-
-"" Leader commands
-let mapleader="\<space>"  " Define um learder
-
-" Abre o init.vim
-nnoremap <leader><Leader>ie :e ~/.config/nvim/init.vim<cr>  
-nnoremap <leader><Leader>is :e ~/.config/nvim/UltiSnips/
-" Carrega o arquivo na memoria
-nnoremap <leader><Leader>ir :source ~/.config/nvim/init.vim<cr>  
-" Organizar buffers
-nnoremap <Leader><Leader>l :ls<CR>
-nnoremap <Leader><Leader>b :bp<CR>
-nnoremap <Leader><Leader>f :bn<CR>
-nnoremap <Leader><Leader>g :e#<CR>
-
-" Re-map the buffers <Leader>b<number>b<new number>
-" Use the <Leader><number> to acess
-nnoremap <Leader>b :buffer
-nnoremap <Leader>bn :echo bufnr('%')<CR>
-let a = 1
-let b = 1
-while a <= 30
-  while b <= 30
-    execute "nnoremap <Leader>b" . a . "b" . b . " :nnoremap<Leader>" . b . " :" . a . "b\<CR>"
-    let b += 1
-  endwhile
-  let b = 1
-  let a += 1
-endwhile
-
-" Disable keyboard arrows
-nnoremap <Left> :echo "No left for you!"<CR>
-vnoremap <Left> :<C-u>echo "No left for you!"<CR>
-"inoremap <Left> <C-o>:echo "No left for you!"<CR>
-nnoremap <Right> :echo "No left for you!"<CR>
-vnoremap <Right> :<C-u>echo "No left for you!"<CR>
-"inoremap <Right> <C-o>:echo "No left for you!"<CR>
-nnoremap <Up> :echo "No left for you!"<CR>
-vnoremap <Up> :<C-u>echo "No left for you!"<CR>
-"inoremap <Up> <C-o>:echo "No left for you!"<CR>
-nnoremap <Down> :echo "No left for you!"<CR>
-vnoremap <Down> :<C-u>echo "No left for you!"<CR>
-"inoremap <Down> <C-o>:echo "No left for you!"<CR>
-
-" Split constrol improve
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Deselect seach
-map <Leader><Space> :noh<CR>
-
-" autocmd VimEnter * source ~/.config/nvim/src/plugins.vim
+nnoremap <silent> <leader>p :<C-u>CocListResume<CR>

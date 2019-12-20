@@ -5,12 +5,14 @@
 call plug#begin()
 
 """"""""""""""""""""""" Themes: """"""""""""""""""""""" 
-" Plug 'morhetz/gruvbox' " gruvbox
+
+Plug 'sjl/badwolf' " badwolf
+
+Plug 'morhetz/gruvbox' " gruvbox
 
 " Plug 'joshdick/onedark.vim' " onedark
 
 " Plug 'tomasiser/vim-code-dark' " codedark
-
 
 """"""""""""""""""""""" Snippets: """"""""""""""""""""""" 
 Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
@@ -40,10 +42,14 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " A tree explorer plugin 
 "  let g:airline_theme = 'badwolf' " Exclusive theme for airline_theme
   "let g:airline_symbols.linenr = 'Ξ' " Desbuga o LN
 
-""""""""""""""""""""""" Vim-lightline: """""""""""""""""""
+""""""""""""""""""""""" Vim-lightline: """""""""""""""""
 Plug 'itchyny/lightline.vim'
+
+""""""""""""""""""" Vim-bufferline: """"""""""""""""""""
   
-""""""""""""""""""""""" FZF: """""""""""""""""""
+Plug 'mengelbrecht/lightline-bufferline'
+
+""""""""""""""""""""""" FZF: """""""""""""""""""""""""""
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " [INSTALLER] A command-line fuzzy finder 
 Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
@@ -51,18 +57,14 @@ Plug 'junegunn/fzf.vim' " A command-line fuzzy finder
 """"""""""""""""""""" Motion: """"""""""""""""""""""""""
 Plug 'justinmk/vim-sneak'
 
-"Plug 'easymotion/vim-easymotion' " For easy motion on text, default leader: <leader><leader>
-
 """"""""""""""""""" Miscellaneous: """""""""""""""""""""
 Plug 'mhinz/vim-startify' " The fancy start screen for Vim
+
+Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 
 "Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
 
 "Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
-
-Plug 'bling/vim-bufferline' " Super simple vim plugin to show the list of buffers in the command bar
-
-Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
   
 "Plug 'cohama/lexima.vim' " Auto close parentheses and repeat by dot dot dot...
 
