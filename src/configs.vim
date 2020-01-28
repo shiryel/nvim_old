@@ -2,7 +2,7 @@
 """"""""""""""""""""""""" GENERAL """""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme badwolf
+colorscheme gruvbox
 "let g:lightline = { 'colorscheme': 'gruvbox' }
 
 "" Set <Leader>
@@ -29,7 +29,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Deselect seach
-map <Leader>/ :noh<CR>
+map <Leader>n :noh<CR>
 
 " Convert existing tabs
 nnoremap <Leader><Tab> :retab<CR>
@@ -217,18 +217,23 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" [coc dianost prev/next]
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
+" [coc Goto Definition]
 nmap <silent> <leader>gd <Plug>(coc-definition)
+" [coc Goto Type]
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
+" [coc Goto Implementation]
 nmap <silent> <leader>gi <Plug>(coc-implementation)
+" [coc Goto References]
 nmap <silent> <leader>gr <Plug>(coc-references)
 
 " Use gh to show documentation in preview window
@@ -245,12 +250,13 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" [Rename]
 " Remap for rename current word
 nmap <leader>r <Plug>(coc-rename)
 
+" [Format]
 " Remap for format selected region
 xmap <leader>f <Plug>(coc-format-selected)
-nmap <leader>f <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -260,21 +266,24 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
+" [CocAction]
 " Remap for do codeAction of selected region, ex: `<leader>AAp` for current paragraph
-xmap <leader>A <Plug>(coc-codeaction-selected)
-nmap <leader>A <Plug>(coc-codeaction-selected)
-
+xmap <leader>ca <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ca  <Plug>(coc-codeaction)
 
+" [CocFix]
+" Fix autofix problem of current line
+nmap <leader>cf  <Plug>(coc-fix-current)
+
+" [I/A Funcobj]
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
+" [range]
 " Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
@@ -293,22 +302,30 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
+" [Coc Diagnostic]
 " Show all diagnostics
-nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>cd :<C-u>CocList diagnostics<cr>
+" [Coc Extensions]
 " Manage extensions
-nnoremap <silent> <leader>e :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>ce :<C-u>CocList extensions<cr>
+" [Coc Commands]
 " Show commands
-nnoremap <silent> <leader>c :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
+" [Coc Outline]
 " Find symbol of current document
-nnoremap <silent> <leader>o :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>co :<C-u>CocList outline<cr>
+" [Coc Symbols]
 " Search workspace symbols
-nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>cs :<C-u>CocList -I symbols<cr>
+" [Coc Next]
 " Do default action for next item.
-nnoremap <silent> <leader>j :<C-u>CocNext<CR>
+nnoremap <silent> <leader>cj :<C-u>CocNext<CR>
+" [Coc Previous]
 " Do default action for previous item.
-nnoremap <silent> <leader>k :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>ck :<C-u>CocPrev<CR>
+" [Coc list Resume]
 " Resume latest coc list
-nnoremap <silent> <leader>p :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>cr :<C-u>CocListResume<CR>
 
 " Coc scrrol in pop-up menus
 nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
