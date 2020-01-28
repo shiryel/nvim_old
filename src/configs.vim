@@ -70,7 +70,7 @@ set expandtab
 " UI Config
 set encoding=utf8
 set inccommand=nosplit " Give us a realtime preview of substitution before we send it
-set list " show formating characters
+"set list " show formating characters
 set lcs=eol:¬,extends:❯,precedes:❮,tab:>- " the formating characters
 set number " show line number
 set relativenumber " line number is relative to cursor
@@ -149,7 +149,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
   " Search on the buffer history
   noremap <Leader>b :Buffers<CR>
   " Search on the file history
-  noremap <Leader>h :History<CR>
+  noremap <Leader>fh :History<CR>
   " Search on the buffer tags
   noremap <Leader>t :BTags<CR>
   " Search through the gutertags
@@ -309,3 +309,10 @@ nnoremap <silent> <leader>j :<C-u>CocNext<CR>
 nnoremap <silent> <leader>k :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <leader>p :<C-u>CocListResume<CR>
+
+" Coc scrrol in pop-up menus
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+
+" Coc auto pop-up menu
+" autocmd CursorHold * if  coc#util#has_float() | call CocAction('doHover') | endif

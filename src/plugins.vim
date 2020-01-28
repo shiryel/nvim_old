@@ -62,6 +62,8 @@ Plug 'mhinz/vim-startify' " The fancy start screen for Vim
 
 Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 
+"Plug 'Yggdroot/indentLine' " To display the indention levels with thin vertical lines
+
 "Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
 
 "Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
@@ -81,13 +83,16 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 
+Plug 'KabbAmine/vCoolor.vim' " Simple color selector/picker plugin for Vim.
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""" COC: """""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" TODO: verify if NixOS can do it with:
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" if not working (aka NixOS) do it with:
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Nequirements:
 " [nodejs, yarn]
 " yarn config set prefix ~/.yarn
@@ -96,21 +101,38 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " NixOs_requeriment:
 "set shell=/bin/sh
 
+" CocExtensions:
+" (it will be added in ~/.config/coc/extensions/node_modules/EXTENSION)
+"
 " Snippets:
-" Install coc-snippets with:
 " :CocInstall coc-snippets
+" Svelte:
+" :CocInstall coc-svelte
+" Elixir:
+" :CocInstall coc-elixir
+
+""""""""""""""""""""""" Svelte: """""""""""""""""""""""""""""
+Plug 'evanleck/vim-svelte', {'for': 'svelte'} " Vim syntax highlighting and indentation for Svelte 3 components
+
+" USE:
+" :CocInstall coc-svelte
 
 """"""""""""""""""""""" Elixir: """""""""""""""""""""""""""""
-Plug 'JakeBecker/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o release'}
+Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
+
+" USE:
+" :CocInstall coc-elixir
+"
+" OLD:
+" Plug 'JakeBecker/elixir-ls' is inactive
+" Plug 'elixir-lsp/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o release'}
 "
 " Add to :CocConfig on "languageserver"
 " "elixirLS": {
 "   "command": "~/.config/nvim/plugged/elixir-ls/release/language_server.sh",
 "   "filetypes": ["elixir", "eelixir"]
 " }
-
-Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
-
+"
 "" Credo integration:
 "Plug 'neomake/neomake', { 'for': 'elixir' }
 "    let g:neomake_elixir_enabled_makers = ['credo']
@@ -118,6 +140,7 @@ Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim
 "    autocmd! BufWritePost *.exs Neomake
 
 """"""""""""""""""""""" Elm: """""""""""""""""""""""""""""
+" TODO: create or use a coc-elm
 " yarn add elm elm-format elm-live elm-test
 " yarn global add @elm-tooling/elm-language-server
 " if necessary use --ignore-engines

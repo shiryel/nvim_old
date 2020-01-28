@@ -1,17 +1,3 @@
 {
-  "languageserver": {
-     "elixirLS": {
-      "command": "~/.config/nvim/plugged/elixir-ls/release/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
-     },
-    "elmLS": {
-      "command": "~/.yarn/bin/elm-language-server",
-      "filetypes": ["elm"],
-      "rootPatterns": ["elm.json"],
-      "initializationOptions": {
-        "elmAnalyseTrigger": "change"
-      }
-    }
-  },
   "codeLens.enable": true
 }
