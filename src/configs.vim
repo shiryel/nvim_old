@@ -34,6 +34,8 @@ map <Leader>n :noh<CR>
 " Convert existing tabs
 nnoremap <Leader><Tab> :retab<CR>
 
+nnoremap <Leader><Leader>t :vsp <Bar> :terminal<CR> <Bar> i
+
 " Disable keyboard arrows
 nnoremap <Left> :echo "No left for you!"<CR>
 vnoremap <Left> :<C-u>echo "No left for you!"<CR>
@@ -181,6 +183,9 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 """"""""""""""""""""""" Snippets: """""""""""""""""""""""""""""""""
 "call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
 
+""""""""""""""""""""""" Snippets: """""""""""""""""""""""""""""""""
+nmap <silent> <leader>c :VCoolor<CR>
+
 """""""""""""""""""""""" COC: """""""""""""""""""""""""""""""""""""
 
 " if hidden is not set, TextEdit might fail.
@@ -227,17 +232,26 @@ nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>] <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-" [coc Goto Definition]
-nmap <silent> <leader>gd <Plug>(coc-definition)
-" [coc Goto Type]
-nmap <silent> <leader>gt <Plug>(coc-type-definition)
-" [coc Goto Implementation]
-nmap <silent> <leader>gi <Plug>(coc-implementation)
-" [coc Goto References]
-nmap <silent> <leader>gr <Plug>(coc-references)
+if(!exists('g:vscode'))
+  " [coc Goto Definition]
+  nmap <silent> <leader>gd <Plug>(coc-definition)
+  " [coc Goto Type]
+  nmap <silent> <leader>gt <Plug>(coc-type-definition)
+  " [coc Goto Implementation]
+  nmap <silent> <leader>gi <Plug>(coc-implementation)
+  " [coc Goto References]
+  nmap <silent> <leader>gr <Plug>(coc-references)
+else
+  " [coc Goto Definition]
+  nmap <silent> <leader>gd :<C-u>call VSCodeNotify('editor.action.revealDefinition')<CR>
+endif
 
 " Use gh to show documentation in preview window
-nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
+if(!exists('g:vscode'))
+  nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
+else
+  nnoremap <silent> <leader>h :<C-u>call VSCodeNotify('editor.action.peekDefinition')<CR>
+endif
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

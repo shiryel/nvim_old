@@ -110,6 +110,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " :CocInstall coc-svelte
 " Elixir:
 " :CocInstall coc-elixir
+" C#:
+" :CocInstall coc-omnisharp
+" # NEED: dotnet
+
+let g:coc_global_extensions=[ 'coc-snippets', 'coc-svelte', 'coc-elixir' ]
 
 """"""""""""""""""""""" Svelte: """""""""""""""""""""""""""""
 Plug 'evanleck/vim-svelte', {'for': 'svelte'} " Vim syntax highlighting and indentation for Svelte 3 components
@@ -156,5 +161,9 @@ Plug 'andys8/vim-elm-syntax'
 "   "initializationOptions": {
 "   "elmAnalyseTrigger": "change" 
 " }
+
+""""""""""""""""""""""" C#: """""""""""""""""""""""""""""
+
+Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
