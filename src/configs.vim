@@ -28,6 +28,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Clipboard
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+vnoremap <Leader>p "+p
+
 " Deselect seach
 map <Leader>n :noh<CR>
 
@@ -347,3 +353,5 @@ nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 
 " Coc auto pop-up menu
 " autocmd CursorHold * if  coc#util#has_float() | call CocAction('doHover') | endif
+
+" let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']

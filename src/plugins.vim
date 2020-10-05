@@ -113,8 +113,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " C#:
 " :CocInstall coc-omnisharp
 " # NEED: dotnet
+" Flutter:
+" :CocInstall coc-flutter
+" CSS:
+" :CocInstall coc-css
+" Rust:
+" :CocInstall coc-rls
 
-let g:coc_global_extensions=[ 'coc-snippets', 'coc-svelte', 'coc-elixir' ]
+let g:coc_global_extensions=[ 'coc-snippets', 'coc-svelte', 'coc-elixir', 'coc-flutter', 'coc-rls']
 
 """"""""""""""""""""""" Svelte: """""""""""""""""""""""""""""
 Plug 'evanleck/vim-svelte', {'for': 'svelte'} " Vim syntax highlighting and indentation for Svelte 3 components
