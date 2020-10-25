@@ -129,7 +129,8 @@ Plug 'evanleck/vim-svelte', {'for': 'svelte'} " Vim syntax highlighting and inde
 " :CocInstall coc-svelte
 
 """"""""""""""""""""""" Elixir: """""""""""""""""""""""""""""
-Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
+Plug 'elixir-editors/vim-elixir'
+" Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
 
 " USE:
 " :CocInstall coc-elixir
