@@ -232,6 +232,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Or use `complete_info` if your vim support it, like:
 "inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
+" Use <Tab> and <S-Tab> to navigate the completion list:
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " [coc dianost prev/next]
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> <leader>[ <Plug>(coc-diagnostic-prev)
