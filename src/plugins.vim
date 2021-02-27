@@ -85,6 +85,10 @@ Plug 'jpalardy/spacehi.vim' " Press F3 to color the spaces
 
 Plug 'KabbAmine/vCoolor.vim' " Simple color selector/picker plugin for Vim.
 
+"""""""""""""""""""""""" Languages: """""""""""""""""""""""""
+
+Plug 'IrenejMarc/vim-mint'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""" COC: """""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

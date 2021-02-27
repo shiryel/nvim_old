@@ -297,6 +297,10 @@ xmap <leader>ca <Plug>(coc-codeaction-selected)
 " Remap for do codeAction of current line
 nmap <leader>ca  <Plug>(coc-codeaction)
 
+" [CodeLensAction]
+" Make a action using code lens
+nmap <silent> <leader>e <Plug>(coc-codelens-action)
+
 " [CocFix]
 " Fix autofix problem of current line
 nmap <leader>cf  <Plug>(coc-fix-current)
