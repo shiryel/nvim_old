@@ -2,8 +2,21 @@
 """""""""""""""""""""""""""" RUNTIME """"""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+lua require('plugins')
+lua require('treesitter')
+lua require('lsp')
+
+" Automatically compiles packer
+autocmd BufWritePost plugins.lua PackerCompile
+
+" Tree-sitter based folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "if(!exists('g:vscode'))
-runtime! src/plugins.vim
+"runtime! src/plugins.vim
 "endif
 runtime! src/configs.vim
 
@@ -11,8 +24,9 @@ runtime! src/configs.vim
 """"""""""""""""""""" FILE TYPE EXTENSION """""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.ex set filetype=elixir
-au BufRead,BufNewFile *.exs set filetype=elixir
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.leex,*.sface set filetype=elixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
 
 au FileType elm set tabstop=4
 au FileType elm set shiftwidth=4

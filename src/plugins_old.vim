@@ -15,7 +15,7 @@ Plug 'morhetz/gruvbox' " gruvbox
 " Plug 'tomasiser/vim-code-dark' " codedark
 
 """"""""""""""""""""""" Snippets: """"""""""""""""""""""" 
-Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
+"Plug 'SirVer/ultisnips' " The ultimate snippet solution for Vim
 "Plug 'honza/vim-snippets' " ultisnips engine
 
 """"""""""""""""""""""" For Git: """"""""""""""""""""""" 
@@ -34,19 +34,10 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' } " A tree explorer plugin 
 "Plug 'majutsushi/tagbar' " Displays tags in a window, ordered by scope
 "   nmap <F7> :TagbarToggle<CR>
 
-""""""""""""""""""""""" Vim-Airline: """""""""""""""""""
-
-"Plug 'vim-airline/vim-airline' " lean & mean status/tabline for vim that's light as air
-"Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
-"  let g:airline_powerline_fonts = 1
-"  let g:airline_theme = 'badwolf' " Exclusive theme for airline_theme
-  "let g:airline_symbols.linenr = 'Ξ' " Desbuga o LN
-
 """"""""""""""""""""""" Vim-lightline: """""""""""""""""
 Plug 'itchyny/lightline.vim'
 
 """"""""""""""""""" Vim-bufferline: """"""""""""""""""""
-  
 Plug 'mengelbrecht/lightline-bufferline'
 
 """"""""""""""""""""""" FZF: """""""""""""""""""""""""""
@@ -63,8 +54,6 @@ Plug 'mhinz/vim-startify' " The fancy start screen for Vim
 Plug 'ryanoasis/vim-devicons' " Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more
 
 "Plug 'Yggdroot/indentLine' " To display the indention levels with thin vertical lines
-
-"Plug 'terryma/vim-multiple-cursors' " True Sublime Text style multiple selections for Vim
 
 "Plug 'powerman/vim-plugin-AnsiEsc' " ANSI escape code support for documentation
   
@@ -136,12 +125,6 @@ Plug 'evanleck/vim-svelte', {'for': 'svelte'} " Vim syntax highlighting and inde
 Plug 'elixir-editors/vim-elixir'
 " Plug 'sheerun/vim-polyglot', { 'for': 'elixir' } " A solid language pack for Vim (syntax, ident, compiler, etc...)
 
-" USE:
-" :CocInstall coc-elixir
-"
-" OLD:
-" Plug 'JakeBecker/elixir-ls' is inactive
-" Plug 'elixir-lsp/elixir-ls', {'do': 'mix deps.get && mix compile && mix elixir_ls.release -o release'}
 "
 " Add to :CocConfig on "languageserver"
 " "elixirLS": {
@@ -172,9 +155,5 @@ Plug 'andys8/vim-elm-syntax'
 "   "initializationOptions": {
 "   "elmAnalyseTrigger": "change" 
 " }
-
-""""""""""""""""""""""" C#: """""""""""""""""""""""""""""
-
-Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
