@@ -11,8 +11,8 @@ let mapleader="\<space>"
 " Open configs
 nnoremap <leader><Leader>i :e ~/.config/nvim/init.vim<cr>  
 nnoremap <leader><Leader>c :e ~/.config/nvim/src/configs.vim<cr>  
-nnoremap <leader><Leader>p :e ~/.config/nvim/src/plugins.vim<cr>  
-nnoremap <leader><Leader>s :e ~/.config/nvim/UltiSnips/
+nnoremap <leader><Leader>p :e ~/.config/nvim/lua/plugins.lua<cr>  
+nnoremap <leader><Leader>l :e ~/.config/nvim/lua/lsp.lua<cr>  
 " Load new configs
 nnoremap <leader><Leader>r :source ~/.config/nvim/init.vim<cr>  
 
@@ -108,7 +108,7 @@ set ignorecase " ignorecase option :P
 " Folding 
 set foldenable " use zi to togle folding
 set foldlevelstart=1 " some folds closed when start editing
-set foldnestmax=10 " limit the folds in the indent and syntax
+set foldnestmax=2 " limit the folds in the indent and syntax
 
 set nobackup " no backup file when overwriting
 set nowritebackup " no make backup before overwriting
@@ -119,8 +119,6 @@ set path+=** " list of directories which will be searched when using the |gf|, [
 set splitbelow " default split below
 set diffopt=vertical " default diff split in the vertical
 
-" completion menu
-set completeopt=menu,menuone,preview,noselect,noinsert
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""" PLUGINS """""""""""""""""""""""""""""""""
@@ -131,45 +129,52 @@ set completeopt=menu,menuone,preview,noselect,noinsert
   autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 """"""""""""""""""""""" NerdTree: """"""""""""""""""""""
-  nmap <F6> :NERDTreeToggle<CR>
+  " Explorer
+  nmap <Leader>e :NERDTreeToggle<CR>
   let NERDTreeShowHidden=1
 
 """"""""""""""""""""""" FZF: """""""""""""""""""
+  " Ag result, ALL
+  noremap <Leader>sa :Ag<CR>
+  " Rg result, Search inside ALL
+  noremap <Leader>ss :Rg<CR>
   " Search on git versioned files
-  noremap <Leader>f :GFiles<CR>
+  noremap <Leader>sf :GFiles<CR>
   " Search on all files
-  noremap <Leader>F :Files<CR>
+  noremap <Leader>sF :Files<CR>
   " Search on the buffer history
-  noremap <Leader>b :Buffers<CR>
+  noremap <Leader>sb :Buffers<CR>
   " Search on the file history
-  noremap <Leader>fh :History<CR>
+  noremap <Leader>sh :History<CR>
   " Search on the buffer tags
-  noremap <Leader>t :BTags<CR>
+  noremap <Leader>st :BTags<CR>
   " Search through the gutertags
-  noremap <Leader>T :Tags<CR>
-  " Search the buffer lines " like ag
-  noremap <Leader>l :BLines<CR>
-  " Search the lines " like /
-  noremap <Leader>L :Lines<CR>
-  " Search for the marks
-  noremap <Leader>' :Marks<CR>
-  " Project finder
-  noremap <Leader>a :Ag<CR>
-  " Shearch for help tags with full scren (! tag)
-  noremap <Leader>H :Helptags!<CR>
-  " Search for commands
-  noremap <Leader>C :Commands<CR>
-  " Search for the : history
-  noremap <Leader>: :History:<CR>
-  " Search for the / history
-  noremap <Leader>/ :History/<CR>
-  " Search for maps
-  noremap <Leader>M :Maps<CR>
+  noremap <Leader>sT :Tags<CR>
   " Serach for the sintax file type
-  noremap <Leader>s :Filetypes<CR>
+  noremap <Leader>st :Filetypes<CR>
+  " Search the buffer lines " like ag
+  noremap <Leader>sl :BLines<CR>
+  " Search the lines " like /
+  noremap <Leader>sL :Lines<CR>
+  " Search for the marks
+  noremap <Leader>s' :Marks<CR>
+  " Shearch for help tags with full scren (! tag)
+  noremap <Leader>sH :Helptags!<CR>
+  " Search for commands
+  noremap <Leader>sc :Commands<CR>
+  " Search for the : history
+  noremap <Leader>s: :History:<CR>
+  " Search for the / history
+  noremap <Leader>s/ :History/<CR>
+  " Search for maps
+  noremap <Leader>sM :Maps<CR>
   
 """"""""""""""""""""" Motion: """"""""""""""""""""""""""
   let g:sneak#label = 1
+
+""""""""""""""""""""""" VCoolor: """"""""""""""""""""""" 
+
+nmap <silent> <leader>c :VCoolor<CR>
 
 """"""""""""""""""""" LSP: """"""""""""""""""""""""""
 
@@ -186,31 +191,61 @@ set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
 
+""""""""""""""""""""" Nvim-Compe: """"""""""""""""""""""""""
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
 """"""""""""""""""""" Completion: """"""""""""""""""""""""""
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Set completeopt to have a better completion experience
+" completion menu
+" for a better completion experience
 set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
 
-"map <c-p> to manually trigger completion
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+"set omnifunc=v:lua.vim.lsp.omnifunc
 
-" Matching Strategy
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+" Go to...
+nnoremap <silent><leader>gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <silent><leader>gD <cmd>lua vim.lsp.buf.declaration()<cr>
+nnoremap <silent><leader>gt <cmd>lua vim.lsp.buf.type_definition()<cr>
+nnoremap <silent><leader>gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nnoremap <silent><leader>gr <cmd>lua vim.lsp.buf.references()<cr>
 
-" Trigger Characters
-" NOTE: To see the trigger character of your language server use:
-" :lua print(vim.inspect(vim.lsp.buf_get_clients()[1].server_capabilities.completionProvider.triggerCharacters))
-let g:completion_trigger_character = ['.', '::']
+" Help
+nnoremap <silent><leader>h <cmd>lua vim.lsp.buf.signature_help()<cr>
+nnoremap <silent><leader>H <cmd>lua vim.lsp.buf.hover()<cr>
 
-" Trigger on delete
-let g:completion_trigger_on_delete = 1
+" Rename
+nnoremap <silent><leader>rn <cmd>lua vim.lsp.buf.rename()<cr>
 
-" Timer Adjustment
-let g:completion_timer_cycle = 80
+" Workspaces
+nnoremap <silent><leader>wr <cmd>lua vim.lsp.buf.add_workspace_folder()<cr>
+nnoremap <silent><leader>wl <cmd>lua vim.lsp.buf.list_workspace_folders()<cr>
+nnoremap <silent><leader>q <cmd>lua vim.lsp.diagnostic.set_loclist()<cr>
+
+" Goto ...
+nnoremap <silent><C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap <silent><C-m> <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+
+" Format
+" if client.resolved_capabilities.document_formatting then
+nnoremap <silent><leader>f <cmd>lua vim.lsp.buf.formatting()<cr>
+" elseif client.resolved_capabilities.document_range_formatting then
+nnoremap <silent><leader>F <cmd>lua vim.lsp.buf.range_formatting()<cr>
+
+" Document Highlight
+" if client.resolved_capabilities.document_highlight then
+augroup lsp_document_highlight
+autocmd! * <buffer>
+autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+augroup END

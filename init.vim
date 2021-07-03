@@ -3,7 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 lua require('plugins')
-lua require('treesitter')
 lua require('lsp')
 
 " Automatically compiles packer

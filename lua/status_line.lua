@@ -1,187 +1,348 @@
+local vim = vim
 local gl = require('galaxyline')
+
 local gls = gl.section
-gl.short_line_list = {'LuaTree','vista','dbui'}
+gl.short_line_list = { 'defx', 'packager', 'vista' }
 
+-- Colors
 local colors = {
-  bg = '#282c34',
-  yellow = '#fabd2f',
-  cyan = '#008080',
-  darkblue = '#081633',
-  green = '#afd700',
-  orange = '#FF8800',
-  purple = '#5d4d7a',
-  magenta = '#d16d9e',
-  grey = '#c0c0c0',
-  blue = '#0087d7',
-  red = '#ec5f67'
+  words = '#FFFFFF',
+  base1 = '#AC96ED',
+  base2 = '#8869A7',
+  cursor_position = '#76257F',
+  yellow = '#f1fa8c',
+  cyan = '#8be9fd',
+  green = '#50fa7b',
+  orange = '#FFC586',
+  magenta = '#ff79c6',
+  blue = '#8be9fd',
+  red = '#ff5555'
 }
 
-local buffer_not_empty = function()
-  if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-    return true
-  end
-  return false
+local icon = {
+  error   = ' ';
+  warn    = ' ';
+  hint    = ' ';
+  info    = ' ';
+  modifiy = ' ';
+  add     = ' ';
+  merge   = ' ';
+  renamed = ' ';
+  unknown = ' ';
+  deleted = ' ';
+  ignored = ' ';
+  close   = ' ';
+  edit    = '';
+  line    = '│';
+  line1   = '⏽';
+  branch  = ' ';
+  gear    = ' ';
+  light   = '';
+  check   = '﫠';
+  ok      = ' ';
+  linux   = '';
+  windows = '';
+  mac     = '';
+  tab     = '';
+}
+
+local separator = {
+  l_up = ' ',
+  l_down = '  ',
+  r_up = ' ',
+  r_down = ' '
+}
+
+local emoji_icon = {
+  error         = '🚫';
+  error1        = '🚨';
+  warn          = '🚧';
+  warn1         = '⚠️';
+  hint          = '🌀';
+  info          = '💡';
+  info1         = 'ℹ️';
+  light         = '💡';
+  fire          = '🔥';
+  fix           = '🔧';
+  pin           = '📌';
+  gear          = '⚙️';
+  search        = '🔎';
+  branch        = '🔱';
+  right         = '👉';
+  close         = '❎';
+  file          = '📄';
+  folder        = '📁';
+  folder_opened = '📂';
+  link          = '🔗';
+}
+
+----------------------
+-- helper functions --
+----------------------
+local function buffer_not_empty()
+  return not (vim.fn.empty(vim.fn.expand('%:t')) == 1)
 end
 
-gls.left[1] = {
-  FirstElement = {
-    provider = function() return '▋' end,
-    highlight = {colors.blue,colors.yellow}
-  },
+local function in_git_repo()
+  local vcs = require('galaxyline.provider_vcs')
+  local branch_name = vcs.get_git_branch()
+
+  return branch_name ~= nil
+end
+
+local function hide_in_width()
+  return (vim.fn.winwidth(0) / 2 > 40) and in_git_repo()
+end
+
+local function ins_left(component)
+  table.insert(gl.section.left, component)
+end
+
+local function ins_right(component)
+  table.insert(gl.section.right, component)
+end
+
+local function ins_mid(component)
+  table.insert(gl.section.mid, component)
+end
+
+-- FILE
+ins_left {
+  LeftStart = {
+    provider = function() return "  " end,
+    highlight = {colors.base1, colors.base1}
+  }
 }
-gls.left[2] = {
-  ViMode = {
-    provider = function()
-      local alias = {n = 'NORMAL',i = 'INSERT',c= 'COMMAND',v= 'VISUAL',V= 'VISUAL LINE', [''] = 'VISUAL BLOCK'}
-      return alias[vim.fn.mode()]
-    end,
-    separator = '',
-    separator_highlight = {colors.purple,function()
-      if not buffer_not_empty() then
-        return colors.purple
-      end
-      return colors.darkblue
-    end},
-    highlight = {colors.darkblue,colors.purple,'bold'},
-  },
-}
-gls.left[3] ={
+
+ins_left {
   FileIcon = {
-    provider = 'FileIcon',
+    provider = "FileIcon",
     condition = buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.darkblue},
-  },
+    highlight = {require("galaxyline.provider_fileinfo").get_file_icon_color, colors.base1}
+  }
 }
-gls.left[4] = {
+
+ins_left {
   FileName = {
-    provider = {'FileName','FileSize'},
+    provider = {"FileName"},
     condition = buffer_not_empty,
-    separator = '',
-    separator_highlight = {colors.purple,colors.darkblue},
-    highlight = {colors.magenta,colors.darkblue}
+    highlight = {colors.words, colors.base1, "bold"}
   }
 }
 
-gls.left[5] = {
+-- GIT
+ins_left {
   GitIcon = {
-    provider = function() return '  ' end,
-    condition = buffer_not_empty,
-    highlight = {colors.orange,colors.purple},
+    provider = function()
+      return icon.branch
+    end,
+    condition = in_git_repo,
+    highlight = {colors.green, colors.base1, "bold"}
   }
 }
-gls.left[6] = {
+
+ins_left {
   GitBranch = {
-    provider = 'GitBranch',
-    condition = buffer_not_empty,
-    highlight = {colors.grey,colors.purple},
+    provider = "GitBranch",
+    condition = in_git_repo,
+    highlight = {colors.green, colors.base1, "bold"}
   }
 }
 
-local checkwidth = function()
-  local squeeze_width  = vim.fn.winwidth(0) / 2
-  if squeeze_width > 40 then
-    return true
-  end
-  return false
-end
+ins_left {
+  BlankArea = {
+    provider = function()
+      return " "
+    end,
+    condition = in_git_repo,
+    highlight = {colors.base1, colors.base1}
+  }
+}
 
-gls.left[7] = {
+ins_left {
   DiffAdd = {
-    provider = 'DiffAdd',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.green,colors.purple},
+    provider = "DiffAdd",
+    condition = hide_in_width,
+    icon = " " .. icon.add,
+    highlight = {colors.green, colors.base1}
   }
 }
-gls.left[8] = {
+
+ins_left {
   DiffModified = {
-    provider = 'DiffModified',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.orange,colors.purple},
+    provider = "DiffModified",
+    condition = hide_in_width,
+    icon = " " .. icon.modifiy,
+    highlight = {colors.orange, colors.base1}
   }
 }
-gls.left[9] = {
+
+ins_left {
   DiffRemove = {
-    provider = 'DiffRemove',
-    condition = checkwidth,
-    icon = ' ',
-    highlight = {colors.red,colors.purple},
+    provider = "DiffRemove",
+    condition = hide_in_width,
+    icon = " " .. icon.deleted,
+    separator = separator.l_down,
+    separator_highlight = {colors.base1, colors.base2},
+    highlight = {colors.red, colors.base1}
   }
 }
-gls.left[10] = {
-  LeftEnd = {
-    provider = function() return '' end,
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.purple,colors.purple}
-  }
-}
-gls.left[11] = {
+
+-- LSP warnings
+ins_left {
   DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.red,colors.bg}
+    provider = "DiagnosticError",
+    icon = icon.error,
+    highlight = {colors.red, colors.base2}
   }
 }
-gls.left[12] = {
-  Space = {
-    provider = function () return ' ' end
-  }
-}
-gls.left[13] = {
+
+ins_left {
   DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.blue,colors.bg},
+    provider = "DiagnosticWarn",
+    icon = icon.warn,
+    highlight = {colors.yellow, colors.base2}
   }
 }
-gls.right[1]= {
-  FileFormat = {
-    provider = 'FileFormat',
-    separator = '',
-    separator_highlight = {colors.bg,colors.purple},
-    highlight = {colors.grey,colors.purple},
+
+ins_left {
+  DiagnosticHint = {
+    provider = "DiagnosticHint",
+    icon = icon.hint,
+    highlight = {colors.cyan, colors.base2}
   }
 }
-gls.right[2] = {
+
+ins_left {
+  LeftEnd = {
+    provider = function() return " " end,
+    highlight = {colors.base1, colors.base2}
+  }
+}
+
+-----------
+-- RIGHT --
+-----------
+
+ins_right {
+  RightStart = {
+    provider = function() return " " end,
+    highlight = {colors.base2, colors.base1},
+    separator = separator.r_up,
+    separator_highlight = {colors.base1, colors.base2},
+  }
+}
+
+-- LSP
+
+ins_right {
+ ShowLspClient = {
+    provider = "GetLspClient",
+    condition = function()
+      local tbl = {["dashboard"] = true, [""] = true}
+      if tbl[vim.bo.filetype] then
+        return false
+      end
+      return true
+    end,
+    icon = icon.gear,
+    highlight = {colors.orange, colors.base1}
+ }
+}
+
+ins_right {
+  ShowLspClientSeparator = {
+    provider = function() return " " .. separator.r_up end,
+    highlight = {colors.base2, colors.base1},
+  }
+}
+
+-- Cursor position
+ins_right {
   LineInfo = {
-    provider = 'LineColumn',
-    separator = ' | ',
-    separator_highlight = {colors.darkblue,colors.purple},
-    highlight = {colors.grey,colors.purple},
-  },
-}
-gls.right[3] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = '',
-    separator_highlight = {colors.darkblue,colors.purple},
-    highlight = {colors.grey,colors.darkblue},
-  }
-}
-gls.right[4] = {
-  ScrollBar = {
-    provider = 'ScrollBar',
-    highlight = {colors.yellow,colors.purple},
+    provider = function()
+      local line = vim.fn.line('.')
+      local column = vim.fn.col('.')
+      return " " .. string.format("%3d:%2d", line, column) .. " "
+    end,
+    condition = hide_in_width,
+    highlight = {colors.words, colors.base2},
+    separator = icon.r_down,
+    separator_highlight = {colors.base1, colors.base2}
   }
 }
 
-gls.short_line_left[1] = {
+ins_right {
+  LineInfoSeparator = {
+    provider = function() return separator.r_up end,
+    highlight = {colors.base1, colors.base2},
+  }
+}
+
+-- Tab size
+ins_right {
+  Tabstop = {
+    provider = function()
+      return "  " .. icon.tab .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+    end,
+    condition = hide_in_width,
+    highlight = {colors.words, colors.base1}
+  }
+}
+
+
+-- Text Format
+ins_right {
+  FileEncode = {
+    provider = function()
+      local encode = vim.bo.fenc ~= '' and vim.bo.fenc or vim.o.enc
+      return " " .. encode:lower()
+    end,
+    condition = hide_in_width,
+    highlight = {colors.words, colors.base2},
+    separator = separator.r_up,
+    separator_highlight = {colors.base2, colors.base1}
+  }
+}
+
+-- File Format
+ins_right {
+  FileFormat = {
+    provider = function()
+      local fileformat = vim.bo.fileformat
+      if fileformat == 'unix' then
+        return "  " .. icon.linux
+      end
+      if fileformat == 'windows' then
+        return "  " .. icon.windows
+      end
+      if fileformat == 'mac' then
+        return "  " .. icon.mac
+      end
+      return "  ?"
+    end,
+    condition = hide_in_width,
+    highlight = {colors.words, colors.base2},
+  }
+}
+
+-- Filename
+ins_right {
   BufferType = {
-    provider = 'FileTypeName',
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.grey,colors.purple}
+    provider = "FileTypeName",
+    condition = hide_in_width,
+    highlight = {colors.words, colors.base1, "bold"},
+    separator = separator.r_up,
+    separator_highlight = {colors.base1, colors.base2}
   }
 }
 
-
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider= 'BufferIcon',
-    separator = '',
-    separator_highlight = {colors.purple,colors.bg},
-    highlight = {colors.grey,colors.purple}
+ins_right {
+  RightEnd = {
+    provider = function() return " " end,
+    highlight = {colors.base2, colors.base1}
   }
 }
+
+-- Force manual load so that nvim boots with a status line
+gl.load_galaxyline()
