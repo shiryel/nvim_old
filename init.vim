@@ -2,8 +2,8 @@
 """""""""""""""""""""""""""" RUNTIME """"""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-lua require('plugins')
-lua require('lsp')
+lua require('plugins/_plugins')
+lua require('lsp/_lsp')
 
 " Automatically compiles packer
 autocmd BufWritePost plugins.lua PackerCompile

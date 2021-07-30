@@ -1,8 +1,10 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
-return require('packer').startup(function()
+local configs = require("plugins/configs")
+
+return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use {'wbthomason/packer.nvim'}
 
   -- Dev setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API
   -- use 'folke/lua-dev.nvim'
@@ -15,43 +17,7 @@ return require('packer').startup(function()
   use {'kabouzeid/nvim-lspinstall'}
 
   -- Completion
-  use {
-    'hrsh7th/nvim-compe',
-    config = function ()
-      require'compe'.setup {
-        enabled = true;
-        autocomplete = true;
-        debug = false;
-        min_length = 1;
-        preselect = 'enable';
-        throttle_time = 80;
-        source_timeout = 200;
-        resolve_timeout = 800;
-        incomplete_delay = 400;
-        max_abbr_width = 100;
-        max_kind_width = 100;
-        max_menu_width = 100;
-        documentation = {
-          border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
-          winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-          max_width = 120,
-          min_width = 60,
-          max_height = math.floor(vim.o.lines * 0.3),
-          min_height = 1,
-        };
-        source = {
-          path = true;
-          buffer = true;
-          calc = true;
-          nvim_lsp = true;
-          nvim_lua = true;
-          vsnip = false;
-          ultisnips = false;
-          luasnip = false;
-        };
-      }
-    end
-  }
+  use {'hrsh7th/nvim-compe', config = configs.nvim_compe}
 
   ---------------
   -- Highlight --
@@ -59,31 +25,12 @@ return require('packer').startup(function()
 
   -- NOTE: Folds the files
   -- NOTE: For a list of all commands
-  -- :h nvim-treesitter-commands 
+  -- :h nvim-treesitter-commands
+  -- Its recommended to update the parsers on update
   use {
     'nvim-treesitter/nvim-treesitter', 
-    run = ':TSUpdate',
-    -- Its recommended to update the parsers on update
-    config = function()
-      require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",
-        highlight = {
-          enable = true
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "gnn",
-            node_incremental = "grn",
-            scope_incremental = "grc",
-            node_decremental = "grm"
-          }
-        },
-        indent = {
-          enable = true
-        }
-      }
-    end
+    run = ':TSUpdate', 
+    config = configs.nvim_treesitter
   }
 
   use {
@@ -96,8 +43,9 @@ return require('packer').startup(function()
   -- uses a simple GTK+ dialog via Zenity or Yad
   use {'KabbAmine/vCoolor.vim'}
 
+  -- Automatically creates missing LSP diagnostics highlight groups for color schemes that don't yet support the Neovim 0.5 builtin lsp client.
   use {'folke/lsp-colors.nvim'}
-  
+
   -- highlight matching words when cursor on it
   -- can be configured with LSP integration
   use {'rrethy/vim-illuminate'}
@@ -110,7 +58,7 @@ return require('packer').startup(function()
     'glepnir/galaxyline.nvim',
     branch = 'main',
     -- the statusline
-    config = function() require'status_line' end,
+    config = function() require('plugins/status_line') end,
     -- some optional icons
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
@@ -144,6 +92,12 @@ return require('packer').startup(function()
   -----------
 
   use {'morhetz/gruvbox'}
+
+  ------------------
+  -- Organization --
+  ------------------
+
+  use {'vhyrro/neorg', requires = "nvim-lua/plenary.nvim", config = configs.neorg}
 
   -------------------
   -- Miscellaneous --
