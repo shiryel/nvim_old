@@ -1,4 +1,7 @@
+.netrwhist
 plugged
 plugin
-.directory
-.netrwhist
+src/
+lua/
+lua_old/
+init.lua
