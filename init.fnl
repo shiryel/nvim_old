@@ -1,4 +1,14 @@
 (global inspect (fn [...] (print (vim.inspect ...))))
 
-(require :configs)
+(global reload (fn [] 
+                 (set package.loaded.init nil)
+                 (set package.loaded.lsp nil)
+                 (set package.loaded.configs nil)
+                 (set package.loaded.plugins nil)
+                 (vim.cmd "cd ~/.config/nvim")
+                 (vim.cmd "make rebuild")
+                 (vim.cmd "luafile $MYVIMRC")))
+
 (require :plugins)
+(require :configs)
+(require :lsp)

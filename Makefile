@@ -8,16 +8,16 @@ $(info Files: ${lua_files})
 # Goals
 #
 
-.PHONY: build clear rebuild
+.PHONY: build clean rebuild
 .DEFAULT_GOAL: build
 
 build: init.lua $(lua_files)
 
-clear:
+clean:
 	rm init.lua
 	rm -r lua/
 
-rebuild: clear build
+rebuild: clean build
 
 #
 # Files

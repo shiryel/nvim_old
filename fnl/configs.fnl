@@ -17,6 +17,7 @@
 (c "hi Comment cterm=italic")
 (c "hi Type cterm=italic")
 
+
 ; to work with 16M colors schemes in the terminal
 (set o.termguicolors true)
 
@@ -39,7 +40,6 @@
 (set o.autoindent true) ; copy the ident of current line when using the o or O commands
 (set o.wrap true) ; continue long lines in the next line
 (set o.linebreak true)
-(set o.wildmenu true) ; menu inline (ex: completion)
 (set o.lazyredraw true) ; screen will not redrawn while exec macros, registers or not typed commands
 (set o.showmatch true) ; jump to a match when executed
 (set o.showmode false) ; lightline shows the status not vim
@@ -64,8 +64,6 @@
 (set o.splitbelow true) ; default split below
 (set o.diffopt "vertical") ; default diff split in the vertical
 
-(set o.completeopt "menu,menuone,preview,noselect,noinsert")
-
 ;; Searching
 (set o.incsearch true) ; show when typing
 (set o.hlsearch true) ; highlight
@@ -73,8 +71,9 @@
 (set o.ignorecase true) ; ignorecase option :P
 
 ;; completion
-(set vim.opt.wildmenu true) ;; ctrl-n and ctrl-p to scroll matches
-(o.wildmode:append ["list:longest,full"])
+(set o.wildmenu true) ; menu inline
+(set o.wildmode "full,list:lastused") ; full fist because is how the plugin works
+(set o.completeopt "menu,menuone,preview,noselect,noinsert")
 
 ; ignore on tab completing
 (vim.opt.wildignore:append
@@ -87,6 +86,7 @@
 
 ; Set <Leader>
 (set g.mapleader " ")
+
 
 ;;;;;;;;;;;
 ; Configs ;
@@ -106,7 +106,7 @@
 (nnoremap "<leader><Leader>c" ":e ~/.config/nvim/fnl/configs.fnl<cr>")
 (nnoremap "<leader><Leader>p" ":e ~/.config/nvim/fnl/plugins.fnl<cr>")
 ; Load ned configs
-(nnoremap "<leader><Leader>r" ":cd ~/.config/nvim <bar> make rebuild <bar> luafile $MYVIMRC<cr>")
+(nnoremap "<leader><Leader>r" ":lua reload()<cr>")
 
 ; Buffer moves
 (nnoremap "<leader>bn" ":ls<cr>")
@@ -193,13 +193,18 @@
 ;; Nvim-Compe
 (inoremap "<C-Space>" "compe#complete()")
 (inoremap "<CR>" "compe#confirm('<CR>')")
+;(inoremap "C-e" "compe#scroll({ 'delta': +4})")
+;(inoremap "C-d" "compe#scroll({ 'delta': -4})")
 
 ;; Completion
 ; Use <Tab> and <S-Tab> to navigate through popup menu
-;(inoremap "<Tab>" "pumvisible() ? <C-n> : <Tab>")
-;(inoremap "<S-Tab>" "pumvisible() ? <C-p> : <S-Tab>")
+(inoremap "<Tab>" "pumvisible() ? <C-n> : <Tab>")
+(inoremap "<S-Tab>" "pumvisible() ? <C-p> : <S-Tab>")
+; TODO does not work
+;(inoremap "<C-e>" "pumvisible() ? <C-n> : <C-e>")
+;(inoremap "<C-o>" "pumvisible() ? <C-p> : <C-o>")
 
-;set omnifunc=v:lua.vim.lsp.omnifunc
+(set o.omnifunc "v:lua.vim.lsp.omnifunc")
 
 ; Go to...
 (nnoremap "<leader>gd" "<cmd>lua vim.lsp.buf.definition()<cr>")
