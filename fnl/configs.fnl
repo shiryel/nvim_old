@@ -17,7 +17,6 @@
 (c "hi Comment cterm=italic")
 (c "hi Type cterm=italic")
 
-
 ; to work with 16M colors schemes in the terminal
 (set o.termguicolors true)
 
@@ -204,8 +203,6 @@
 ;(inoremap "<C-e>" "pumvisible() ? <C-n> : <C-e>")
 ;(inoremap "<C-o>" "pumvisible() ? <C-p> : <C-o>")
 
-(set o.omnifunc "v:lua.vim.lsp.omnifunc")
-
 ; Go to...
 (nnoremap "<leader>gd" "<cmd>lua vim.lsp.buf.definition()<cr>")
 (nnoremap "<leader>gD" "<cmd>lua vim.lsp.buf.declaration()<cr>")
@@ -229,16 +226,9 @@
 (nnoremap "<C-g>" "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
 (nnoremap "<C-G>" "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
 
-; Format
-; if client.resolved_capabilities.document_formatting then
-(nnoremap "<leader>f" "<cmd>lua vim.lsp.buf.formatting()<cr>")
-; elseif client.resolved_capabilities.document_range_formatting then
-(nnoremap "<leader>F" "<cmd>lua vim.lsp.buf.range_formatting()<cr>")
+(c "au BufRead,BufNewFile *.ex set filetype=elixir")
+(c "au BufRead,BufNewFile *.exs set filetype=elixir")
 
-; Document Highlight
-; if client.resolved_capabilities.document_highlight then
-(c "augroup lsp_document_highlight")
-(c "autocmd! * <buffer>")
-(c "autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()")
-(c "autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()")
-(c "augroup END")
+(c "au FileType elm set tabstop=4")
+(c "au FileType elm set shiftwidth=4")
+(c "au FileType elm set expandtab")

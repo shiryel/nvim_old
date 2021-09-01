@@ -10,5 +10,7 @@
                  (vim.cmd "luafile $MYVIMRC")))
 
 (require :plugins)
-(require :configs)
 (require :lsp)
+(require :configs)
+
+;(vim.cmd "autocmd BufWritePost plugins.lua PackerCompile")
