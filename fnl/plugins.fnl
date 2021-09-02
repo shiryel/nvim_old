@@ -3,54 +3,36 @@
 (let [packer (require :packer)]
   (packer.startup
    (fn [use]
-     (use "wbthomason/packer.nvim")
-     ; for lewis6991/gitsigns.nvim and 
-     (use "nvim-lua/plenary.nvim")
+     (use "wbthomason/packer.nvim") ; base
+     (use "nvim-lua/plenary.nvim") ; for lewis6991/gitsigns.nvim and 
 
      ;; LSP Support
-
      (use "neovim/nvim-lspconfig")
      (use "kabouzeid/nvim-lspinstall")
-     ; Completion
-     (use "hrsh7th/nvim-compe")
+     (use "hrsh7th/nvim-compe") ; Completion
 
      ;; Highlight
-
      ; :h nvim-treesitter-commands
      ; Its recommended to update the parsers on update
      (use "nvim-treesitter/nvim-treesitter" {:run ":TSUpdate"})
-
-		 ; color highlighter
      (use "norcalli/nvim-colorizer.lua" {
-       :config #(let [c (require :colorizer)] (c.setup))})
-     ; uses a simple GTK+ dialog via Zenity or Yad
-     (use "KabbAmine/vCoolor.vim")
-		 ; automatically highlighting other uses of the word under the cursor
-     (use "rrethy/vim-illuminate")
-
-     ;; Statusline
-
-     (use "glepnir/galaxyline.nvim" {
-       :branch "main"
-       ; TODO :config status_line
-       :requires ["kyazdani42/nvim-web-devicons" {:opt true}]})
+       :config #(let [c (require :colorizer)] (c.setup))}) ; color highlighter
+     (use "KabbAmine/vCoolor.vim") ; uses a simple GTK+ dialog via Zenity or Yad
+     (use "rrethy/vim-illuminate") ; automatically highlighting other uses of the word under the cursor
 
      ;; Git
-
-     (use "lewis6991/gitsigns.nvim")
-     (use "Xuyuanp/nerdtree-git-plugin")
+		 (use "tpope/vim-fugitive") ; Git commands, eg: diff
+     (use "lewis6991/gitsigns.nvim") ; Lines changed
+     (use "Xuyuanp/nerdtree-git-plugin") ; Files changed
 
      ;; FZF
-
      (use "junegunn/fzf")
      (use "junegunn/fzf.vim")
 
      ;; Theme
-
      (use "morhetz/gruvbox")
 
      ;; Miscellaneous
-
      (use "scrooloose/nerdtree" {"cmd" "NERDTreeToggle"})
      (use "mhinz/vim-startify")
      (use "justinmk/vim-sneak")
@@ -110,13 +92,6 @@
 	(g.setup {
 		:numhl true
 		:signcolumn false
-		:signs {
-			; disabled by signcolumn
-			:add {:hl "GitSignsAdd" :text "│" :numhl "GitSignsAddNr" :linehl "GitSignsAddLn"}
-			:change {:hl "GitSignsChange" :text "│" :numhl "GitSignsChangeNr" :linehl "GitSignsChangeLn"}
-			:delete {:hl "GitSignsDelete" :text "_" :numhl "GitSignsDeleteNr" :linehl "GitSignsDeleteLn"}
-			:topdelete {:hl "GitSignsDelete" :text "‾" :numhl "GitSignsDeleteNr" :linehl "GitSignsDeleteLn"}
-			:changedelete {:hl "GitSignsChange" :text "~" :numhl "GitSignsChangeNr" :linehl "GitSignsChangeLn"}}
 		:current_line_blame true
 		:attach_to_untracked true
 		:sign_priority 6

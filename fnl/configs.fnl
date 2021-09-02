@@ -33,7 +33,6 @@
 (set o.number true)
 (set o.relativenumber true) ; line number is relative to cursor
 (set o.mouse "a") ; enable mouse
-(set o.ruler false) ; hide the column and line of the pointer
 (set o.cursorline false) ; dont highlight the current cursor line
 (set o.smartindent true) ; smart ident (priority for C like langs)
 (set o.autoindent true) ; copy the ident of current line when using the o or O commands
@@ -48,6 +47,12 @@
 (set o.signcolumn "no") ; hide the column for error signs
 (set o.showcmd true) ; show commands in the last line off screen
 (set o.cmdheight 2) ; better display for messages
+
+;; StatusLine
+; f to only file name
+(set o.statusline "%F%m%r%h%w %=%< [%Y] [0x%02.2B]%4v,%4l %3p%% of %L")
+(set o.ruler false) ; hide the column and line of the pointer
+(set o.laststatus 2) ; always shows the status line on other windows
 
 ;; Folding
 (set o.foldenable true) ; use zi to togle folding
@@ -74,7 +79,7 @@
 (set o.wildmode "full,list:lastused") ; full fist because is how the plugin works
 (set o.completeopt "menuone,preview,noselect,noinsert")
 
-. ignore on tab completing
+; ignore on tab completing
 (vim.opt.wildignore:append
  ["*.o"
   "*~"
@@ -85,7 +90,6 @@
 
 ; Set <Leader>
 (set g.mapleader " ")
-
 
 ;;;;;;;;;;;
 ; Configs ;
@@ -143,14 +147,15 @@
 (nnoremap "<leader>t" ":sp <Bar> :terminal<cr> <bar> i")
 
 ;; NerdTree
-
 (noremap "<leader>e" ":NERDTreeToggle<cr>")
 (set g.NERDTreeShowHidden 1)
 ; To not open files and other buffers on NerdTree window
 ;(c "autocmd BufEnter * if bufname('#') =~# ^NERD_tree_ && winnr('$') > 1 | b# | endif")
 
-;; FZF
+;; Vim Sneak
+(set g.sneak#label 1)
 
+;; FZF
 ; Ag result, ALL
 (noremap "<Leader>sa" ":Ag<CR>")
 ; Rg result, Search inside ALL
@@ -186,9 +191,6 @@
 ; Search for maps
 (noremap "<Leader>sM" ":Maps<CR>")
 
-;; Motion
-;(set g.sneak#label 1)
-
 ;; VCoolor
 (nnoremap "<leader>c" ":VCoolor<CR>")
 
@@ -203,10 +205,6 @@
 ; NOTE: sometimes <Tab> == <C-i>
 ; FIXME:
 ;(cnoremap "<C-n>" "wildmenumode() ? \"\\<C-e>\" : \"\\<Tab>\"")
-
-; TODO does not work
-;(inoremap "<C-e>" "pumvisible() ? <C-n> : <C-e>")
-;(inoremap "<C-o>" "pumvisible() ? <C-p> : <C-o>")
 
 ; Go to...
 (nnoremap "<leader>gd" "<cmd>lua vim.lsp.buf.definition()<cr>")
