@@ -72,9 +72,9 @@
 ;; completion
 (set o.wildmenu true) ; menu inline
 (set o.wildmode "full,list:lastused") ; full fist because is how the plugin works
-(set o.completeopt "menu,menuone,preview,noselect,noinsert")
+(set o.completeopt "menuone,preview,noselect,noinsert")
 
-; ignore on tab completing
+. ignore on tab completing
 (vim.opt.wildignore:append
  ["*.o"
   "*~"
@@ -95,7 +95,10 @@
   (vim.api.nvim_set_keymap "n" bind command {"noremap" true "silent" true}))
 
 (fn inoremap [bind command]
-  (vim.api.nvim_set_keymap "n" bind command {"noremap" true "silent" true "expr" true}))
+  (vim.api.nvim_set_keymap "i" bind command {"noremap" true "silent" true "expr" true}))
+
+(fn cnoremap [bind command]
+  (vim.api.nvim_set_keymap "c" bind command {"noremap" true "silent" true "expr" true}))
 
 (fn noremap [bind command]
   (vim.api.nvim_set_keymap "" bind command {"noremap" true "silent" true}))
@@ -190,15 +193,17 @@
 (nnoremap "<leader>c" ":VCoolor<CR>")
 
 ;; Nvim-Compe
-(inoremap "<C-Space>" "compe#complete()")
+(inoremap "<C-n>" "pumvisible() ? \"\\<C-n>\" : compe#complete()")
 (inoremap "<CR>" "compe#confirm('<CR>')")
-;(inoremap "C-e" "compe#scroll({ 'delta': +4})")
-;(inoremap "C-d" "compe#scroll({ 'delta': -4})")
 
 ;; Completion
-; Use <Tab> and <S-Tab> to navigate through popup menu
-(inoremap "<Tab>" "pumvisible() ? <C-n> : <Tab>")
-(inoremap "<S-Tab>" "pumvisible() ? <C-p> : <S-Tab>")
+; <C-i> - open
+; <C-n> - next
+; <C-p> - previous
+; NOTE: sometimes <Tab> == <C-i>
+; FIXME:
+;(cnoremap "<C-n>" "wildmenumode() ? \"\\<C-e>\" : \"\\<Tab>\"")
+
 ; TODO does not work
 ;(inoremap "<C-e>" "pumvisible() ? <C-n> : <C-e>")
 ;(inoremap "<C-o>" "pumvisible() ? <C-p> : <C-o>")

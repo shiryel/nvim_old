@@ -37,8 +37,8 @@
 
      ;; Git
 
-     (use "tpope/vim-fugitive")
      (use "lewis6991/gitsigns.nvim")
+     (use "Xuyuanp/nerdtree-git-plugin")
 
      ;; FZF
 
@@ -106,4 +106,28 @@
 		:indent {
 			:enable true}}))
 
-(let [g (require :gitsigns)] (g.setup))
+(let [g (require :gitsigns)] 
+	(g.setup {
+		:numhl true
+		:signcolumn false
+		:signs {
+			; disabled by signcolumn
+			:add {:hl "GitSignsAdd" :text "│" :numhl "GitSignsAddNr" :linehl "GitSignsAddLn"}
+			:change {:hl "GitSignsChange" :text "│" :numhl "GitSignsChangeNr" :linehl "GitSignsChangeLn"}
+			:delete {:hl "GitSignsDelete" :text "_" :numhl "GitSignsDeleteNr" :linehl "GitSignsDeleteLn"}
+			:topdelete {:hl "GitSignsDelete" :text "‾" :numhl "GitSignsDeleteNr" :linehl "GitSignsDeleteLn"}
+			:changedelete {:hl "GitSignsChange" :text "~" :numhl "GitSignsChangeNr" :linehl "GitSignsChangeLn"}}
+		:current_line_blame true
+		:attach_to_untracked true
+		:sign_priority 6
+		:update_debounce 100
+		:status_formatter nil ; use default
+		:max_file_length 40000
+		:preview_config {
+			; Options passed to nvim_open_win
+			:border "single"
+			:style "minimal"
+			:relative "cursor"
+			:row 0
+			:col 1}
+		:use_internal_diff true}))
