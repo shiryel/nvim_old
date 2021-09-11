@@ -121,10 +121,10 @@
 (nnoremap "<leader>bi" ":e;<cr>")
 
 ; Spit moves
-(nnoremap "<c-n>" "<c-w><c-h>")
-(nnoremap "<c-e>" "<c-w><c-j>")
-(nnoremap "<c-o>" "<c-w><c-k>")
-(nnoremap "<c-i>" "<c-w><c-l>")
+(nnoremap "<c-left>" "<c-w><c-h>")
+(nnoremap "<c-down>" "<c-w><c-j>")
+(nnoremap "<c-up>" "<c-w><c-k>")
+(nnoremap "<c-right>" "<c-w><c-l>")
 
 ; Remap splits
 (noremap "<leader>vs" ":vs<cr>")
