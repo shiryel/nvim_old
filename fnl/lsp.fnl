@@ -32,24 +32,22 @@
 
 ;; Configure all servers
 (fn setup_servers []
-  (let [lspinstall (require :lspinstall)
+  (let [lspinstall (require :nvim-lsp-installer)
         lspconfig (require :lspconfig)]
-    (lspinstall.setup)
+    (lspinstall.on_server_ready (fn [server]
+                                  (let [config (new_config)]
+                                    ;(if (= server.name "lua")
+                                    ;  (set config.settings {}))
 
-    (each [_key value (ipairs (lspinstall.installed_servers))]
-          (let [config (new_config)]
-            (if (= value "lua")
-              (set config.settings {}))
+                                    ;(if (= config.filetypes nil)
+                                    ;  (set config.filetypes [ server.name ]))
 
-            (if (= config.filetypes nil)
-              (set config.filetypes [ value ]))
+                                    ;((. lspconfig server.name :setup) config)
 
-            ((. lspconfig value :setup) config)))
+                                    ; its like lspconfig
+                                    (server:setup config)
 
-    ;; Runs on install
-    (set lspinstall.post_install_hook (fn []
-                                        (setup_servers)
-                                        (vim.cmd "bufdo e")))))
+                                    (vim.cmd "do User LspAttachBuffers"))))))
 
 ;; RUNS IT
 ;(inspect (pairs (lspinstall:installed_servers)))

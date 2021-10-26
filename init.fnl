@@ -13,4 +13,6 @@
 (require :lsp)
 (require :configs)
 
+(vim.cmd "colorscheme fennec")
+
 ;(vim.cmd "autocmd BufWritePost plugins.lua PackerCompile")

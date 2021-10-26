@@ -1,0 +1,175 @@
+; vim: ft=colortemplate
+
+Full name:  Fennec
+Short name: fennec
+; info
+Author:          shiryel <shiryel@hotmail.com>
+Website:         https://github.com/shiryel/nvim
+Description:     A small and simple color scheme
+Option Prefix:   fennec
+Neovim:          yes
+
+; Neutral colors
+Color: neutralred        rgb(204,  36,  29)    160 DarkRed
+Color: neutralgreen      rgb(152, 151,  26)    100 DarkGreen
+Color: neutralyellow     rgb(215, 153,  33)    172 DarkYellow
+Color: neutralblue       rgb( 69, 133, 136)    66  DarkBlue
+Color: neutralpurple     rgb(177,  98, 134)    132 DarkMagenta
+Color: neutralaqua       rgb(104, 157, 106)    71  DarkCyan
+Color: neutralorange     rgb(214,  93,  14)    166
+
+Variant: gui 256 16 8
+Color: bg0             rgb(40,40,40)         ~ Black
+Color: bg1             rgb(60,  56,  54)     ~ DarkGray
+Color: bg2             rgb(80,  73,  69)     ~
+Color: bg3             rgb(102, 92,  84)     ~
+Color: bg4             rgb(124, 111, 100)    ~
+Color: fg0             rgb(251, 241, 199)    ~ white
+Color: fg1             rgb(235, 219, 178)    ~ White
+Color: fg2             rgb(213, 196, 161)    ~
+Color: fg3             rgb(189, 174, 147)    ~
+Color: fg4             rgb(168, 153, 132)    ~ Gray
+Color: grey            rgb(146, 131, 116)    ~ DarkGray
+Color: red             rgb(246, 109, 93)     ~ Red
+Color: green           rgb(147, 194, 95)     ~ Green
+Color: yellow          rgb(235, 213, 86)     ~ Yellow
+Color: blue            rgb(160, 181, 220)    ~ Blue
+Color: purple          rgb(224, 143, 165)    ~ Magenta
+Color: aqua            rgb(89, 204, 194)     ~ Cyan
+Color: orange          rgb(220, 143, 80)     ~ Magenta
+
+Term colors: bg0 neutralred neutralgreen neutralyellow neutralblue neutralpurple neutralaqua fg4
+Term colors: grey red green yellow blue purple aqua fg1
+Terminal fg1 bg0
+
+; GUI & 256-color specific
+; Group          Link (optional) Fg     Bg      Attributes
+Variant: gui 256
+Normal													 fg1    bg0
+CursorLineNr										 yellow bg1
+FoldColumn											 grey   bg1   # FIXME
+SignColumn  									   fg1    bg1
+VertSplit   									   bg3    bg0
+ColorColumn                      none   bg1
+Comment                          grey   none    italic
+CursorLine                       none   bg1
+CursorColumn     -> CursorLine
+Error                            red    bg0     bold,reverse
+ErrorMsg                         bg0    red     bold
+Folded                           grey   bg1     italic
+LineNr                           bg4    none
+MatchParen                       none   bg2     bold,underline
+NonText                          bg2    none
+Pmenu                            fg1    bg2
+PmenuSbar                        none   bg2
+PmenuSel                         bg2    blue    bold
+PmenuThumb                       none   bg4
+SpecialKey                       grey   none
+StatusLine                       bg2    fg1     reverse
+StatusLineTerm   -> StatusLine
+StatusLineNC                     bg1    fg4     reverse
+StatusLineTermNC -> StatusLineNC
+TabLine                          bg4    bg1
+TabLineFill                      bg4    bg1
+TabLineSel                       green  bg1
+ToolbarButton                    fg0    bg3     bold
+ToolbarLine                      none   bg3
+Visual                           none   bg3
+VisualNOS        -> Visual
+WildMenu                         blue   bg2     bold
+
+; Common
+Variant: gui 256 16 8
+; Group          Link (optional) Fg     Bg      Attributes
+Normal                           fg1    bg0
+Conceal                          blue   none
+Cursor                           none   none    reverse
+lCursor          -> Cursor
+iCursor          -> Cursor
+vCursor          -> Cursor
+TermCursor       -> Cursor                                  ; nvim
+TermCursorNC                     bg1    fg1                 ; nvim
+DiffAdd                          green  bg0     reverse
+DiffChange                       aqua   bg0     reverse
+DiffDelete                       red    bg0     reverse
+DiffText                         yellow bg0     reverse
+Directory                        green  none    bold
+EndOfBuffer                      bg0    none
+IncSearch                        orange bg0     reverse
+ModeMsg                          yellow none    bold
+MoreMsg                          yellow none    bold
+Question                         orange none    bold
+Search                           yellow bg0     reverse
+QuickFixLine     -> Search
+SpellBad                         red    none    italic t=underline g=undercurl s=red
+SpellCap                         blue   none    italic t=underline g=undercurl s=blue
+SpellLocal                       aqua   none    italic t=underline g=undercurl s=aqua
+SpellRare                        purple none    italic t=underline g=undercurl s=purple
+Title                            green  none    bold
+WarningMsg                       red    none    bold
+; Other conventional group names (see `:help group-name`)
+Boolean                          purple none
+Character                        purple none
+Conditional                      red    none
+Constant                         purple none
+Define                           aqua   none
+Debug                            red    none
+Delimiter                        orange none
+Error                            red    bg0     bold,reverse
+Exception                        red    none
+Float                            purple none
+Function                         yellow none    bold
+Identifier                       purple none
+Ignore                           fg     none
+Include                          red   none
+Keyword                          red    none
+Label                            red    none
+Macro                            aqua   none
+Number                           purple none
+Operator                         aqua   none
+PreCondit                        aqua   none
+PreProc                          aqua   none
+Repeat                           red    none
+SpecialChar                      red    none
+SpecialComment                   red    none
+Statement                        red    none
+StorageClass                     orange none
+Special                          orange none    italic
+Tag              -> Special
+String                           green  none    italic
+Structure                        aqua   none
+Todo                             fg     bg0     bold,italic
+Type                             yellow none
+Typedef                          yellow none
+Underlined                       blue   none    underline s=blue
+CursorIM                         none   none    reverse
+
+; Italics
+verbatim
+hi Special gui=NONE cterm=NONE
+hi String gui=NONE cterm=NONE
+endverbatim
+
+; Boldface
+Variant: gui
+verbatim
+hi Directory gui=NONE cterm=NONE
+hi Error gui=reverse cterm=reverse
+hi ErrorMsg gui=NONE cterm=NONE
+hi Function gui=NONE cterm=NONE
+hi MatchParen gui=underline cterm=underline
+hi ModeMsg gui=NONE cterm=NONE
+hi MoreMsg gui=NONE cterm=NONE
+hi PmenuSel gui=NONE cterm=NONE
+hi Question gui=NONE cterm=NONE
+hi Title gui=NONE cterm=NONE
+hi Todo gui=italic cterm=italic
+hi ToolbarButton gui=NONE cterm=NONE
+hi WarningMsg gui=NONE cterm=NONE
+hi WildMenu gui=NONE cterm=NONE
+endverbatim
+
+; Extra highlight groups
+Variant: gui 256
+Include: _plugins
+Include: _filetypes

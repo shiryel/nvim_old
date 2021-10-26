@@ -6,7 +6,6 @@
 (local o vim.opt)
 (local c vim.cmd)
 
-(c "colorscheme gruvbox")
 (c "syntax enable")
 (c "highlight Comment cterm=italic")
 (c "hi link xmlEndTag xmlTag")
@@ -22,6 +21,7 @@
 
 ;; Spaces and Tabs
 (set o.syntax "enable")
+(set o.expandtab true)
 (set o.tabstop 2)
 (set o.softtabstop 2)
 (set o.shiftwidth 2)

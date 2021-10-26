@@ -5,10 +5,11 @@
    (fn [use]
      (use "wbthomason/packer.nvim") ; base
      (use "nvim-lua/plenary.nvim") ; for lewis6991/gitsigns.nvim and 
+		 (use "lifepillar/vim-colortemplate") ; for color templates
 
      ;; LSP Support
      (use "neovim/nvim-lspconfig")
-     (use "kabouzeid/nvim-lspinstall")
+     (use "williamboman/nvim-lsp-installer")
      (use "hrsh7th/nvim-compe") ; Completion
 
      ;; Highlight
@@ -19,6 +20,7 @@
        :config #(let [c (require :colorizer)] (c.setup))}) ; color highlighter
      (use "KabbAmine/vCoolor.vim") ; uses a simple GTK+ dialog via Zenity or Yad
      (use "rrethy/vim-illuminate") ; automatically highlighting other uses of the word under the cursor
+		 (use "gko/vim-coloresque") ; Preview colours in source code while editing
 
      ;; Git
 		 (use "tpope/vim-fugitive") ; Git commands, eg: diff
@@ -30,13 +32,16 @@
      (use "junegunn/fzf.vim")
 
      ;; Theme
-     (use "morhetz/gruvbox")
+     ; (use "morhetz/gruvbox")
 
      ;; Miscellaneous
      (use "scrooloose/nerdtree" {"cmd" "NERDTreeToggle"})
      (use "mhinz/vim-startify")
      (use "justinmk/vim-sneak")
-     (use "folke/which-key.nvim"))))
+     (use "folke/which-key.nvim")
+
+     ;; Lisp
+     (use "vlime/vlime" {"rtp" "vim/"}))))
 
 (let [compe (require :compe)]
   (compe.setup {
@@ -98,11 +103,11 @@
 		:update_debounce 100
 		:status_formatter nil ; use default
 		:max_file_length 40000
+	; :use_internal_diff true
 		:preview_config {
 			; Options passed to nvim_open_win
 			:border "single"
 			:style "minimal"
 			:relative "cursor"
 			:row 0
-			:col 1}
-		:use_internal_diff true}))
+			:col 1}}))
