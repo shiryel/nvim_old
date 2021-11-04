@@ -231,6 +231,7 @@
 
 (c "au BufRead,BufNewFile *.ex set filetype=elixir")
 (c "au BufRead,BufNewFile *.exs set filetype=elixir")
+(c "au BufRead,BufNewFile *.slime set filetype=elixir")
 
 (c "au FileType elm set tabstop=4")
 (c "au FileType elm set shiftwidth=4")

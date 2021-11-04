@@ -36,8 +36,8 @@
         lspconfig (require :lspconfig)]
     (lspinstall.on_server_ready (fn [server]
                                   (let [config (new_config)]
-                                    ;(if (= server.name "lua")
-                                    ;  (set config.settings {}))
+                                    (if (= server.name "clangd")
+                                      (set config.settings {}))
 
                                     ;(if (= config.filetypes nil)
                                     ;  (set config.filetypes [ server.name ]))
