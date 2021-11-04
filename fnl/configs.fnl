@@ -229,6 +229,8 @@
 (nnoremap "<C-g>" "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
 (nnoremap "<C-G>" "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
 
+(c "au BufRead,BufNewFile *.colortemplate set filetype=colortemplate")
+
 (c "au BufRead,BufNewFile *.ex set filetype=elixir")
 (c "au BufRead,BufNewFile *.exs set filetype=elixir")
 (c "au BufRead,BufNewFile *.slime set filetype=elixir")
