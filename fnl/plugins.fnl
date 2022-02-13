@@ -9,18 +9,17 @@
 
      ;; LSP Support
      (use "neovim/nvim-lspconfig")
-     (use "williamboman/nvim-lsp-installer")
      (use "hrsh7th/nvim-compe") ; Completion
 
      ;; Highlight
+     ; TODO: remove when elixir TS comes back working
+     (use "elixir-editors/vim-elixir")
+
      ; :h nvim-treesitter-commands
      ; Its recommended to update the parsers on update
      (use "nvim-treesitter/nvim-treesitter" {:run ":TSUpdate"})
-     (use "norcalli/nvim-colorizer.lua" {
-       :config #(let [c (require :colorizer)] (c.setup))}) ; color highlighter
      (use "KabbAmine/vCoolor.vim") ; uses a simple GTK+ dialog via Zenity or Yad
      (use "rrethy/vim-illuminate") ; automatically highlighting other uses of the word under the cursor
-		 (use "gko/vim-coloresque") ; Preview colours in source code while editing
 
      ;; Git
 		 (use "tpope/vim-fugitive") ; Git commands, eg: diff
@@ -31,14 +30,12 @@
      (use "junegunn/fzf")
      (use "junegunn/fzf.vim")
 
-     ;; Theme
-     ; (use "morhetz/gruvbox")
-
      ;; Miscellaneous
      (use "scrooloose/nerdtree" {"cmd" "NERDTreeToggle"})
      (use "mhinz/vim-startify")
-     (use "justinmk/vim-sneak")
      (use "folke/which-key.nvim")
+     ; TODO: check it out in the future
+     ;(use "hoschi/yode-nvim")
 
      ;; Lisp
      (use "vlime/vlime" {"rtp" "vim/"}))))
@@ -75,14 +72,18 @@
       :ultisnips false
       :luasnip false}}))
 
+; TODO: elixir is not working on treesitter
 (let [ts (require :nvim-treesitter.configs)]
 	(ts.setup {
 		:ensure_installed "maintained"
+    ;:ignore_install ["elixir"]
 		:highlight {
 			:enable true
+      :disable ["elixir"]
 		}
 		:incremental_selection {
 			:enable true
+      ;:disable ["elixir"]
 			:keymaps {
 			  :init_selection "gnn"
 			  :node_incremental "grn"
@@ -91,7 +92,9 @@
 			}
 		}
 		:indent {
-			:enable true}}))
+			:enable true
+      ;:disable ["elixir"]
+      }}))
 
 (let [g (require :gitsigns)] 
 	(g.setup {
@@ -111,3 +114,18 @@
 			:relative "cursor"
 			:row 0
 			:col 1}}))
+
+(let [wk (require :which-key)] 
+  (wk.setup {
+    :plugins {
+      :marks true
+      :registers true
+      :spelling {
+        :enabled true
+        :suggestions 20}
+    }
+    :ignore_missings false
+    :triggers_blacklist {
+      :i ["j" "k"]
+      :v ["j" "k"]}
+    }))
