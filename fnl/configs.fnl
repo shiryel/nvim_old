@@ -207,27 +207,27 @@
 ;(cnoremap "<C-n>" "wildmenumode() ? \"\\<C-e>\" : \"\\<Tab>\"")
 
 ; Go to...
-(nnoremap "<leader>gd" "<cmd>lua vim.lsp.buf.definition()<cr>")
-(nnoremap "<leader>gD" "<cmd>lua vim.lsp.buf.declaration()<cr>")
-(nnoremap "<leader>gt" "<cmd>lua vim.lsp.buf.type_definition()<cr>")
-(nnoremap "<leader>gi" "<cmd>lua vim.lsp.buf.implementation()<cr>")
-(nnoremap "<leader>gr" "<cmd>lua vim.lsp.buf.references()<cr>")
+;(nnoremap "<leader>gd" "<cmd>lua vim.lsp.buf.definition()<cr>")
+;(nnoremap "<leader>gD" "<cmd>lua vim.lsp.buf.declaration()<cr>")
+;(nnoremap "<leader>gt" "<cmd>lua vim.lsp.buf.type_definition()<cr>")
+;(nnoremap "<leader>gi" "<cmd>lua vim.lsp.buf.implementation()<cr>")
+;(nnoremap "<leader>gr" "<cmd>lua vim.lsp.buf.references()<cr>")
 
 ; Help
-(nnoremap "<leader>h" "<cmd>lua vim.lsp.buf.signature_help()<cr>")
-(nnoremap "<leader>H" "<cmd>lua vim.lsp.buf.hover()<cr>")
+;(nnoremap "<leader>h" "<cmd>lua vim.lsp.buf.signature_help()<cr>")
+;(nnoremap "<leader>H" "<cmd>lua vim.lsp.buf.hover()<cr>")
 
 ; Rename
-(nnoremap "<leader>rn" "<cmd>lua vim.lsp.buf.rename()<cr>")
+;(nnoremap "<leader>rn" "<cmd>lua vim.lsp.buf.rename()<cr>")
 
 ; Workspaces
-(nnoremap "<leader>wr" "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>")
-(nnoremap "<leader>wl" "<cmd>lua vim.lsp.buf.list_workspace_folders()<cr>")
-(nnoremap "<leader>q" "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>")
+;(nnoremap "<leader>wr" "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>")
+;(nnoremap "<leader>wl" "<cmd>lua vim.lsp.buf.list_workspace_folders()<cr>")
+;(nnoremap "<leader>q" "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>")
 
 ; Goto ...
-(nnoremap "<C-g>" "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
-(nnoremap "<C-G>" "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
+;(nnoremap "<C-g>" "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
+;(nnoremap "<C-G>" "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
 
 (c "au BufRead,BufNewFile *.colortemplate set filetype=colortemplate")
 

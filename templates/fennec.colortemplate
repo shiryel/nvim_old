@@ -1,4 +1,4 @@
-; vim: ft=colortemplate
+; vim: ft=colortemplate fdm=marker
 
 Full name:  Fennec
 Short name: fennec
@@ -9,167 +9,717 @@ Description:     A small and simple color scheme
 Option Prefix:   fennec
 Neovim:          yes
 
-; Neutral colors
-Color: neutralred        rgb(204,  36,  29)    160 DarkRed
-Color: neutralgreen      rgb(152, 151,  26)    100 DarkGreen
-Color: neutralyellow     rgb(215, 153,  33)    172 DarkYellow
-Color: neutralblue       rgb( 69, 133, 136)    66  DarkBlue
-Color: neutralpurple     rgb(177,  98, 134)    132 DarkMagenta
-Color: neutralaqua       rgb(104, 157, 106)    71  DarkCyan
-Color: neutralorange     rgb(214,  93,  14)    166
+Variant:               gui                   256  16         8
+; black -> amber gb
+Color: black0          rgb(40,40,40)         ~    Black
+Color: black1          rgb(60,  56,  54)     ~    DarkGray
+Color: black2          rgb(80,  73,  69)     ~    DarkGray
+Color: black3          rgb(102, 92,  84)     ~    DarkGray
+Color: black4          rgb(124, 111, 100)    ~    DarkGray
+; white -> amber fg
+Color: white0          rgb(251, 241, 199)    ~    white
+Color: white1          rgb(235, 219, 178)    ~    White
+Color: white2          rgb(213, 196, 161)    ~    White
+Color: white3          rgb(189, 174, 147)    ~    White
+Color: white4          rgb(168, 153, 132)    ~    Gray
+;Color: grey            #8B8B8B               ~    DarkGray
+;Color: green           #78BD81               ~    Green
+;Color: amber           #E5CA7B               ~    Yellow
+;Color: red             #ED7C58               ~    Red
+;Color: blue            #72B6D4               ~    Blue
+;Color: purple          #BA95F6               ~    Magenta
+Color: grey            #8B8B8B               ~    DarkGray
+Color: green           #78BD81               ~    Green
+Color: amber           #EDCD6B               ~    Yellow
+Color: red             #ED7C58               ~    Red
+Color: blue            #7CBFDC               ~    Blue
+Color: purple          #EBA7D3               ~    Magenta
 
+Term colors: grey red green amber blue purple white1 black1
+Terminal white1 black0
+
+; IMPORTANT:
+; Use `:help group-name` or `help-syntax` and search for `group-name`
+;
 Variant: gui 256 16 8
-Color: bg0             rgb(40,40,40)         ~ Black
-Color: bg1             rgb(60,  56,  54)     ~ DarkGray
-Color: bg2             rgb(80,  73,  69)     ~
-Color: bg3             rgb(102, 92,  84)     ~
-Color: bg4             rgb(124, 111, 100)    ~
-Color: fg0             rgb(251, 241, 199)    ~ white
-Color: fg1             rgb(235, 219, 178)    ~ White
-Color: fg2             rgb(213, 196, 161)    ~
-Color: fg3             rgb(189, 174, 147)    ~
-Color: fg4             rgb(168, 153, 132)    ~ Gray
-Color: grey            rgb(146, 131, 116)    ~ DarkGray
-Color: red             rgb(246, 109, 93)     ~ Red
-Color: green           rgb(147, 194, 95)     ~ Green
-Color: yellow          rgb(235, 213, 86)     ~ Yellow
-Color: blue            rgb(160, 181, 220)    ~ Blue
-Color: purple          rgb(224, 143, 165)    ~ Magenta
-Color: aqua            rgb(89, 204, 194)     ~ Cyan
-Color: orange          rgb(220, 143, 80)     ~ Magenta
-
-Term colors: bg0 neutralred neutralgreen neutralyellow neutralblue neutralpurple neutralaqua fg4
-Term colors: grey red green yellow blue purple aqua fg1
-Terminal fg1 bg0
-
-; GUI & 256-color specific
-; Group          Link (optional) Fg     Bg      Attributes
-Variant: gui 256
-Normal													 fg1    bg0
-CursorLineNr										 yellow bg1
-FoldColumn											 grey   bg1   # FIXME
-SignColumn  									   fg1    bg1
-VertSplit   									   bg3    bg0
-ColorColumn                      none   bg1
-Comment                          grey   none    italic
-CursorLine                       none   bg1
-CursorColumn     -> CursorLine
-Error                            red    bg0     bold,reverse
-ErrorMsg                         bg0    red     bold
-Folded                           grey   bg1     italic
-LineNr                           bg4    none
-MatchParen                       none   bg2     bold,underline
-NonText                          bg2    none
-Pmenu                            fg1    bg2
-PmenuSbar                        none   bg2
-PmenuSel                         bg2    blue    bold
-PmenuThumb                       none   bg4
-SpecialKey                       grey   none
-StatusLine                       bg2    fg1     reverse
-StatusLineTerm   -> StatusLine
-StatusLineNC                     bg1    fg4     reverse
-StatusLineTermNC -> StatusLineNC
-TabLine                          bg4    bg1
-TabLineFill                      bg4    bg1
-TabLineSel                       green  bg1
-ToolbarButton                    fg0    bg3     bold
-ToolbarLine                      none   bg3
-Visual                           none   bg3
+; Group          Link (optional) Fg      Bg      Attributes
+Comment                          grey    none
+Constant                         purple  none
+String                           green   none
+Identifier                       purple  none
+Function                         amber   none
+Statement                        red     none
+PreProc                          red     none
+Type                             blue    none
+Special                          none    none
+SpecialChar                      blue    none
+Delimiter                        amber   none
+Tag                              blue    none
+SpecialComment                   blue    none
+Debug                            blue    none
+Underlined                       blue    none       italic,underline
+Error                            red     none       bold,underline
+ErrorMsg         -> Error
+Todo                             white1  none       bold,italic
+; others
+Normal                           white1  black0
+Visual                           none    black2
 VisualNOS        -> Visual
-WildMenu                         blue   bg2     bold
-
-; Common
-Variant: gui 256 16 8
-; Group          Link (optional) Fg     Bg      Attributes
-Normal                           fg1    bg0
-Conceal                          blue   none
-Cursor                           none   none    reverse
+Directory                        green   none       italic,bold
+NonText                          black2  none
+MatchParen                       none    black3     bold,underline
+Folded                           grey    black1     italic
+SpecialKey                       grey    none
+Question                         amber   none       bold
+ModeMsg                          amber   none       bold
+MoreMsg                          amber   none       bold
+; Character under
+illuminatedWord                  none    black2     ; PLUGIN
+Cursor                           none    black2
 lCursor          -> Cursor
 iCursor          -> Cursor
 vCursor          -> Cursor
-TermCursor       -> Cursor                                  ; nvim
-TermCursorNC                     bg1    fg1                 ; nvim
-DiffAdd                          green  bg0     reverse
-DiffChange                       aqua   bg0     reverse
-DiffDelete                       red    bg0     reverse
-DiffText                         yellow bg0     reverse
-Directory                        green  none    bold
-EndOfBuffer                      bg0    none
-IncSearch                        orange bg0     reverse
-ModeMsg                          yellow none    bold
-MoreMsg                          yellow none    bold
-Question                         orange none    bold
-Search                           yellow bg0     reverse
+TermCursor       -> Cursor
+Title                            green   none       bold
+WarningMsg                       red     none       bold
+; Search
+Search                           none    black1     bold,underline
+IncSearch                        black0  amber      ; used for replace search
 QuickFixLine     -> Search
-SpellBad                         red    none    italic t=underline g=undercurl s=red
-SpellCap                         blue   none    italic t=underline g=undercurl s=blue
-SpellLocal                       aqua   none    italic t=underline g=undercurl s=aqua
-SpellRare                        purple none    italic t=underline g=undercurl s=purple
-Title                            green  none    bold
-WarningMsg                       red    none    bold
-; Other conventional group names (see `:help group-name`)
-Boolean                          purple none
-Character                        purple none
-Conditional                      red    none
-Constant                         purple none
-Define                           aqua   none
-Debug                            red    none
-Delimiter                        orange none
-Error                            red    bg0     bold,reverse
-Exception                        red    none
-Float                            purple none
-Function                         yellow none    bold
-Identifier                       purple none
-Ignore                           fg     none
-Include                          red   none
-Keyword                          red    none
-Label                            red    none
-Macro                            aqua   none
-Number                           purple none
-Operator                         aqua   none
-PreCondit                        aqua   none
-PreProc                          aqua   none
-Repeat                           red    none
-SpecialChar                      red    none
-SpecialComment                   red    none
-Statement                        red    none
-StorageClass                     orange none
-Special                          orange none    italic
-Tag              -> Special
-String                           green  none    italic
-Structure                        aqua   none
-Todo                             fg     bg0     bold,italic
-Type                             yellow none
-Typedef                          yellow none
-Underlined                       blue   none    underline s=blue
-CursorIM                         none   none    reverse
+; Spelling
+SpellBad                         red     none       italic t=underline g=undercurl s=red
+SpellCap                         blue    none       italic t=underline g=undercurl s=blue
+SpellLocal                       blue    none       italic t=underline g=undercurl s=blue
+SpellRare                        purple  none       italic t=underline g=undercurl s=purple
+; Interface
+LineNr                           black4  black0
+CursorLineNr										 black4  black0
+CursorLine                       none    black1
+WildMenu                         blue    black2     bold ; current match
+; Interface: Line split
+VertSplit   									   black4  black4
+; Interface: Line split diff column
+ColorColumn                      none    none
+DiffAdd                          green   none       ;reverse
+DiffChange                       blue    none       ;reverse
+DiffDelete                       red     none       ;reverse
+DiffText                         amber   none       ;reverse
+; Interface: Line above
+TabLine                          black4  black1
+TabLineFill                      black4  black1
+; Interface: Line bellow 
+StatusLine                       white0  black3
+StatusLineNC                     white4  black1
+StatusLineTerm   -> StatusLine
+StatusLineTermNC -> StatusLineNC
+; Interface: Submenus
+Pmenu                            white1  black2
+PmenuSbar                        none    black2
+PmenuSel                         black2  blue    bold
 
-; Italics
-verbatim
-hi Special gui=NONE cterm=NONE
-hi String gui=NONE cterm=NONE
-endverbatim
+;;;;;;;;;;;
+; PLUGINS ;
+;;;;;;;;;;;
 
-; Boldface
-Variant: gui
-verbatim
-hi Directory gui=NONE cterm=NONE
-hi Error gui=reverse cterm=reverse
-hi ErrorMsg gui=NONE cterm=NONE
-hi Function gui=NONE cterm=NONE
-hi MatchParen gui=underline cterm=underline
-hi ModeMsg gui=NONE cterm=NONE
-hi MoreMsg gui=NONE cterm=NONE
-hi PmenuSel gui=NONE cterm=NONE
-hi Question gui=NONE cterm=NONE
-hi Title gui=NONE cterm=NONE
-hi Todo gui=italic cterm=italic
-hi ToolbarButton gui=NONE cterm=NONE
-hi WarningMsg gui=NONE cterm=NONE
-hi WildMenu gui=NONE cterm=NONE
-endverbatim
+; Plugin specific groups
+; BufTabLine {{{
+;BufTabLineCurrent                black0    white4
+;BufTabLineActive                 white4    black2
+;BufTabLineHidden                 black4    black1
+;BufTabLineFill                   black0    black0
+;; }}}
+;; EasyMotion {{{
+;EasyMotionTarget              -> Search
+;EasyMotionShade               -> Comment
+;; }}}
+;; GitCommit {{{
+gitcommitSelectedFile            green  none
+gitcommitDiscardedFile           red    none
+;; }}}
+;; GitGutter {{{
+#if get(g:, 'transparent_bg', 0)
+  GitGutterAdd                     green  none
+  GitGutterChange                  blue   none
+  GitGutterDelete                  red    none
+  GitGutterChangeDelete            blue   none
+#else
+  GitGutterAdd                     green  black1
+  GitGutterChange                  blue   black1
+  GitGutterDelete                  red    black1
+  GitGutterChangeDelete            blue   black1
+#endif
+;; }}}
+;; Indent Guides {{{
+;#if get(g:, 'indent_guides_auto_colors', 0)
+;  #if get(g:, '@optionprefix_invert_indent_guides', 0)
+;    IndentGuidesOdd  black0 black2 reverse
+;    IndentGuidesEven black0 black1 reverse
+;  #else
+;    IndentGuidesOdd  black0 black2
+;    IndentGuidesEven black0 black1
+;  #endif
+;#endif
+;; }}}
+;; IndentLine {{{
+;#if !exists('g:indentLine_color_term')
+;  #let g:indentLine_color_term = @term256black2
+;#endif
+;#if !exists('g:indentLine_color_gui')
+;  #let g:indentLine_color_gui = '@guiblack2'
+;#endif
+;; }}}
+;; LSP {{{
+LspDiagnosticsDefaultError       red    none
+LspDiagnosticsSignError          red    black1
+LspDiagnosticsUnderlineError     none   none    s=none
 
-; Extra highlight groups
-Variant: gui 256
-Include: _plugins
-Include: _filetypes
+LspDiagnosticsDefaultWarning     amber none
+LspDiagnosticsSignWarning        amber black1
+LspDiagnosticsUnderlineWarning   none  none    s=none
+
+LspDiagnosticsDefaultInformation amber   none
+LspDiagnosticsSignInformation    amber   black1
+LspDiagnosticsUnderlineInformation none none    s=none
+
+LspDiagnosticsDefaultHint        blue   none
+LspDiagnosticsSignHint           blue   black1
+LspDiagnosticsUnderlineHint      none   none    s=none
+;; }}}
+;; NERDTree {{{
+NERDTreeDir                      green   none
+NERDTreeDirSlash                 green   none
+
+NERDTreeOpenable                 amber   none
+NERDTreeClosable                 amber   none
+
+NERDTreeFile                     white1  none
+NERDTreeExecFile                 amber   none
+
+NERDTreeUp                       grey    none
+NERDTreeCWD                      green   none
+NERDTreeHelp                     white1  none
+
+NERDTreeToggleOn                 green   none
+NERDTreeToggleOff                red     none
+;; }}}
+;; ShowMarks {{{
+;ShowMarksHLl                     blue   black1
+;ShowMarksHLu                     blue   black1
+;ShowMarksHLo                     blue   black1
+;ShowMarksHLm                     blue   black1
+;; }}}
+;; Startify {{{
+StartifyBracket                  white3    none
+StartifyFile                     white1    none
+StartifyNumber                   blue   none
+StartifyPath                     grey   none
+StartifySlash                    grey   none
+StartifySection                  amber none
+StartifySpecial                  black2    none
+StartifyHeader                   amber none
+StartifyFooter                   black2    none
+;; }}}
+;; Vimshell {{{
+;verbatim
+;let g:vimshell_escape_colors = [
+;  \ '@guiblack4', '@guired', '@guigreen', '@guiamber',
+;  \ '@guiblue', '@guipurple', '@guiblue', '@guiwhite4',
+;  \ '@guiblack0', '@guired', '@guigreen', '@guiamber',
+;  \ '@guiblue', '@guipurple', '@guiblue', '@guiwhite0'
+;  \ ]
+;endverbatim
+;; }}}
+
+;;;;;;;;;;;;;
+; FILETYPES ;
+;;;;;;;;;;;;;
+
+; Filetype specific groups
+;#if get(g:, "@optionprefix_filetype_hi_groups", 1)
+;; Diff {{{
+;diffAdded                        green  none
+;diffRemoved                      red    none
+;diffChanged                      blue   none
+;
+;diffFile                         amber none
+;diffNewFile                      amber none
+;
+;diffLine                         blue   none
+;; }}}
+;; HTML {{{
+;htmlTag                          blue   none
+;htmlEndTag                       blue   none
+;
+;htmlTagName                      blue   none    bold
+;htmlArg                          blue   none
+;
+;htmlScriptTag                    purple none
+;htmlTagN                         white1    none
+;htmlSpecialTagName               blue   none    bold
+;
+;htmlLink                         white4    none    underline
+;
+;htmlSpecialChar                  amber none
+;
+;htmlBold                         fg     black0     bold
+;htmlBoldUnderline                fg     black0     bold,underline
+;htmlBoldItalic                   fg     black0     bold,italic
+;htmlBoldUnderlineItalic          fg     black0     bold,underline,italic
+;
+;htmlUnderline                    fg     black0     underline
+;htmlUnderlineItalic              fg     black0     underline,italic
+;htmlItalic                       fg     black0     italic
+;; }}}
+;; XML {{{
+;xmlTag                           blue   none
+;xmlEndTag                        blue   none
+;xmlTagName                       blue   none
+;xmlEqual                         blue   none
+;docbkKeyword                     blue   none    bold
+;
+;xmlDocTypeDecl                   grey   none
+;xmlDocTypeKeyword                purple none
+;xmlCdataStart                    grey   none
+;xmlCdataCdata                    purple none
+;dtdFunction                      grey   none
+;dtdTagName                       purple none
+;
+;xmlAttrib                        blue   none
+;xmlProcessingDelim               grey   none
+;dtdParamEntityPunct              grey   none
+;dtdParamEntityDPunct             grey   none
+;xmlAttribPunct                   grey   none
+;
+;xmlEntity                        amber none
+;xmlEntityPunct                   amber none
+;; }}}
+;; Vim {{{
+;vimCommentTitle                  white4    none    bold
+;vimNotation                      amber none
+;vimBracket                       amber none
+;vimMapModKey                     amber none
+;vimFuncSID                       white3    none
+;vimSetSep                        white3    none
+;vimSep                           white3    none
+;vimContinue                      white3    none
+;; }}}
+;; Clojure {{{
+;clojureKeyword                   blue   none
+;clojureCond                      amber none
+;clojureSpecial                   amber none
+;clojureDefine                    amber none
+;
+;clojureFunc                      amber none
+;clojureRepeat                    amber none
+;clojureCharacter                 blue   none
+;clojureStringEscape              blue   none
+;clojureException                 red    none
+;
+;clojureRegexp                    blue   none
+;clojureRegexpEscape              blue   none
+;clojureRegexpCharClass           white3    none    bold
+;clojureRegexpMod              -> clojureRegexpCharClass
+;clojureRegexpQuantifier       -> clojureRegexpCharClass
+;
+;clojureParen                     white3    none
+;clojureAnonArg                   amber none
+;clojureVariable                  blue   none
+;clojureMacro                     amber none
+;
+;clojureMeta                      amber none
+;clojureDeref                     amber none
+;clojureQuote                     amber none
+;clojureUnquote                   amber none
+;; }}}
+;; C {{{
+;cOperator                        purple none
+;cStructure                       amber none
+;; }}}
+;; Python {{{
+;pythonBuiltin                    amber none
+;pythonBuiltinObj                 amber none
+;pythonBuiltinFunc                amber none
+;pythonFunction                   blue   none
+;pythonDecorator                  red    none
+;pythonInclude                    blue   none
+;pythonImport                     blue   none
+;pythonRun                        blue   none
+;pythonCoding                     blue   none
+;pythonOperator                   red    none
+;pythonException                  red    none
+;pythonExceptions                 purple none
+;pythonBoolean                    purple none
+;pythonDot                        white3    none
+;pythonConditional                red    none
+;pythonRepeat                     red    none
+;pythonDottedName                 green  none    bold
+;; }}}
+;; CSS {{{
+;cssBraces                        blue   none
+;cssFunctionName                  amber none
+;cssIdentifier                    amber none
+;cssClassName                     green  none
+;cssColor                         blue   none
+;cssSelectorOp                    blue   none
+;cssSelectorOp2                   blue   none
+;cssImportant                     green  none
+;cssVendor                        white1    none
+;
+;cssTextProp                      blue   none
+;cssAnimationProp                 blue   none
+;cssUIProp                        amber none
+;cssTransformProp                 blue   none
+;cssTransitionProp                blue   none
+;cssPrintProp                     blue   none
+;cssPositioningProp               amber none
+;cssBoxProp                       blue   none
+;cssFontDescriptorProp            blue   none
+;cssFlexibleBoxProp               blue   none
+;cssBorderOutlineProp             blue   none
+;cssBackgroundProp                blue   none
+;cssMarginProp                    blue   none
+;cssListProp                      blue   none
+;cssTableProp                     blue   none
+;cssFontProp                      blue   none
+;cssPaddingProp                   blue   none
+;cssDimensionProp                 blue   none
+;cssRenderProp                    blue   none
+;cssColorProp                     blue   none
+;cssGeneratedContentProp          blue   none
+;; }}}
+;; JavaScript {{{
+;javaScriptBraces                 white1    none
+;javaScriptFunction               blue   none
+;javaScriptIdentifier             red    none
+;javaScriptMember                 blue   none
+;javaScriptNumber                 purple none
+;javaScriptNull                   purple none
+;javaScriptParens                 white3    none
+;; }}}
+;; YAJS {{{
+;javascriptImport                 blue   none
+;javascriptExport                 blue   none
+;javascriptClassKeyword           blue   none
+;javascriptClassExtends           blue   none
+;javascriptDefault                blue   none
+;
+;javascriptClassName              amber none
+;javascriptClassSuperName         amber none
+;javascriptGlobal                 amber none
+;
+;javascriptEndColons              white1    none
+;javascriptFuncArg                white1    none
+;javascriptGlobalMethod           white1    none
+;javascriptNodeGlobal             white1    none
+;javascriptBOMWindowProp          white1    none
+;javascriptArrayMethod            white1    none
+;javascriptArrayStaticMethod      white1    none
+;javascriptCacheMethod            white1    none
+;javascriptDateMethod             white1    none
+;javascriptMathStaticMethod       white1    none
+;
+;javascriptURLUtilsProp           white1    none
+;javascriptBOMNavigatorProp       white1    none
+;javascriptDOMDocMethod           white1    none
+;javascriptDOMDocProp             white1    none
+;javascriptBOMLocationMethod      white1    none
+;javascriptBOMWindowMethod        white1    none
+;javascriptStringMethod           white1    none
+;
+;javascriptVariable               amber none
+;javascriptIdentifier             amber none
+;javascriptClassSuper             amber none
+;
+;javascriptFuncKeyword            blue   none
+;javascriptAsyncFunc              blue   none
+;javascriptClassStatic            amber none
+;
+;javascriptOperator               red    none
+;javascriptForOperator            red    none
+;javascriptYield                  red    none
+;javascriptExceptions             red    none
+;javascriptMessage                red    none
+;
+;javascriptTemplateSB             blue   none
+;javascriptTemplateSubstitution   white1    none
+;
+;javascriptLabel                  white1    none
+;javascriptObjectLabel            white1    none
+;javascriptPropertyName           white1    none
+;
+;javascriptLogicSymbols           white1    none
+;javascriptArrowFunc              amber none
+;
+;javascriptDocParamName           white4    none
+;javascriptDocTags                white4    none
+;javascriptDocNotation            white4    none
+;javascriptDocParamType           white4    none
+;javascriptDocNamedParamType      white4    none
+;
+;javascriptBrackets               white1    none
+;javascriptDOMElemAttrs           white1    none
+;javascriptDOMEventMethod         white1    none
+;javascriptDOMNodeMethod          white1    none
+;javascriptDOMStorageMethod       white1    none
+;javascriptHeadersMethod          white1    none
+;
+;javascriptAsyncFuncKeyword       red    none
+;javascriptAwaitFuncKeyword       red    none
+;; }}}
+;;PanglossJS {{{
+;jsImport                         red    none
+;jsExport                         red    none
+;jsFrom                           red    none
+;jsThis                           purple none
+;jsParen                          blue   none
+;jsOperator                       blue   none
+;jsSpreadOperator                 green  none
+;jsSpreadExpression               blue   none
+;jsClassKeyword                   red    none
+;jsClassProperty                  green  none
+;jsExtendsKeyword                 red    none
+;jsExportDefault                  amber none bold
+;jsTemplateBraces                 blue   none
+;jsGlobalNodeObjects              white1    none
+;jsGlobalObjects                  white1    none
+;jsFunction                       green  none
+;jsFuncParens                     purple none
+;jsFuncBlock                      blue   none
+;jsParens                         white3    none
+;jsNull                           purple none
+;jsUndefined                      purple none
+;jsClassDefinition                amber none
+;jsFunctionKey                    green  none
+;jsBracket                        red    none
+;jsObjectColon                    red    none
+;jsObjectProp                     blue   none
+;jsFuncBraces                     green  none
+;jsVariableDef                    amber none
+;jsObjectValue                    blue   none
+;jsDestructuringBlock             amber none
+;jsParenIfElse                    blue   none
+;jsClassBlock                     blue   none
+;jsFutureKeys                     amber none bold
+;jsStorageClass                   amber none
+;jsModuleKeyword                  blue   none
+;jsObjectShorthandProp            blue   none
+;jsxRegion                        blue   none
+;; }}}
+;; JSx{{{
+;jsxTagName                       blue   none
+;jsxComponentName                 amber none
+;jsxEscapeJsAttributes            blue   none
+;jsxEscapeJsContent               blue   none
+;jsxAttrib                        amber none
+;jsxAttributeBraces               white1    none
+;jsxEqual                         blue   none
+;jsxString                        green  none
+;jsxCloseTag                      blue   none
+;jsxEndTag                        blue   none
+;jsxEndString                     blue   none
+;jsxCloseString                   blue   none
+;jsxIfOperator                    blue   none
+;jsxElseOperator                  blue   none
+;jsxDot                           white1    none
+;jsxNamespace                     blue   none
+;jsxPunct                         blue   none
+;;}}}
+;; TypeScript {{{
+;typeScriptReserved               blue   none
+;typeScriptLabel                  blue   none
+;typeScriptFuncKeyword            blue   none
+;typeScriptIdentifier             amber none
+;typeScriptBraces                 white1    none
+;typeScriptEndColons              white1    none
+;typeScriptDOMObjects             white1    none
+;typeScriptAjaxMethods            white1    none
+;typeScriptLogicSymbols           white1    none
+;typeScriptDocSeeTag           -> Comment
+;typeScriptDocParam            -> Comment
+;typeScriptDocTags             -> vimCommentTitle
+;typeScriptGlobalObjects          white1    none
+;typeScriptParens                 white3    none
+;typeScriptOpSymbols              white3    none
+;typeScriptHtmlElemProperties     white1    none
+;typeScriptNull                   purple none
+;typeScriptInterpolationDelimiter blue   none
+;; }}}
+;; PureScript {{{
+;purescriptModuleKeyword          blue   none
+;purescriptModuleName             white1    none
+;purescriptWhere                  blue   none
+;purescriptDelimiter              white4    none
+;purescriptType                   white1    none
+;purescriptImportKeyword          blue   none
+;purescriptHidingKeyword          blue   none
+;purescriptAsKeyword              blue   none
+;purescriptStructure              blue   none
+;purescriptOperator               blue   none
+;
+;purescriptTypeVar                white1    none
+;purescriptConstructor            white1    none
+;purescriptFunction               white1    none
+;purescriptConditional            amber none
+;purescriptBacktick               amber none
+;; }}}
+;; CoffeeScript {{{
+;coffeeExtendedOp                 white3    none
+;coffeeSpecialOp                  white3    none
+;coffeeCurly                      amber none
+;coffeeParen                      white3    none
+;coffeeBracket                    amber none
+;; }}}
+;; Ruby {{{
+;rubyStringDelimiter              green  none
+;rubyInterpolationDelimiter       blue   none
+;; }}}
+;; ObjectiveC {{{
+;objcTypeModifier                 red    none
+;objcDirective                    blue   none
+;; }}}
+;; Go {{{
+;goDirective                      blue   none
+;goConstants                      purple none
+;goDeclaration                    red    none
+;goDeclType                       blue   none
+;goBuiltins                       amber none
+;; z}}}
+;; Lua {{{
+;luaIn                            red    none
+;luaFunction                      blue   none
+;luaTable                         amber none
+;; }}}
+;; MoonScript {{{
+;moonSpecialOp                    white3    none
+;moonExtendedOp                   white3    none
+;moonFunction                     white3    none
+;moonObject                       amber none
+;; }}}
+;; Java {{{
+;javaAnnotation                   blue   none
+;javaDocTags                      blue   none
+;javaCommentTitle              -> vimCommentTitle
+;javaParen                        white3    none
+;javaParen1                       white3    none
+;javaParen2                       white3    none
+;javaParen3                       white3    none
+;javaParen4                       white3    none
+;javaParen5                       white3    none
+;javaOperator                     amber none
+;
+;javaVarArg                       green  none
+;; }}}
+;; Elixir {{{
+elixirDocString               -> Comment
+elixirStringDelimiter            green  none
+elixirInterpolationDelimiter     blue   none
+;elixirModuleDeclaration          amber none
+;; }}}
+;; Scala {{{
+;scalaNameDefinition              white1    none
+;scalaCaseFollowing               white1    none
+;scalaCapitalWord                 white1    none
+;scalaTypeExtension               white1    none
+;
+;scalaKeyword                     red    none
+;scalaKeywordModifier             red    none
+;
+;scalaSpecial                     blue   none
+;scalaOperator                    white1    none
+;
+;scalaTypeDeclaration             amber none
+;scalaTypeTypePostDeclaration     amber none
+;
+;scalaInstanceDeclaration         white1    none
+;scalaInterpolation               blue   none
+;; }}}
+;; Markdown {{{
+;markdownItalic                   white3    none    italic
+;
+;markdownH1                       green  none    bold
+;markdownH2                       green  none    bold
+;markdownH3                       amber none    bold
+;markdownH4                       amber none    bold
+;markdownH5                       amber none
+;markdownH6                       amber none
+;
+;markdownCode                     blue   none
+;markdownCodeBlock                blue   none
+;markdownCodeDelimiter            blue   none
+;
+;markdownBlockquote               grey   none
+;markdownListMarker               grey   none
+;markdownOrderedListMarker        grey   none
+;markdownRule                     grey   none
+;markdownHeadingRule              grey   none
+;
+;markdownUrlDelimiter             white3    none
+;markdownLinkDelimiter            white3    none
+;markdownLinkTextDelimiter        white3    none
+;
+;markdownHeadingDelimiter         amber none
+;markdownUrl                      purple none
+;markdownUrlTitleDelimiter        green  none
+;
+;markdownLinkText                 grey   none    underline
+;markdownIdDeclaration         -> markdownLinkText
+;; }}}
+;; Haskell {{{
+;haskellType                      white1    none
+;haskellIdentifier                white1    none
+;haskellSeparator                 white1    none
+;haskellDelimiter                 white4    none
+;haskellOperators                 blue   none
+;
+;haskellBacktick                  amber none
+;haskellStatement                 amber none
+;haskellConditional               amber none
+;
+;haskellLet                       blue   none
+;haskellDefault                   blue   none
+;haskellWhere                     blue   none
+;haskellBottom                    blue   none
+;haskellBlockKeywords             blue   none
+;haskellImportKeywords            blue   none
+;haskellDeclKeyword               blue   none
+;haskellDeriving                  blue   none
+;haskellAssocType                 blue   none
+;
+;haskellNumber                    purple none
+;haskellPragma                    purple none
+;
+;haskellString                    green  none
+;haskellChar                      green  none
+;; }}}
+;; JSON {{{
+;jsonKeyword                      green  none
+;jsonQuote                        green  none
+;jsonBraces                       white1    none
+;jsonString                       white1    none
+;; }}}
+;
+;; Boldface {{{
+;Variant: gui
+;verbatim
+;if !get(g:, '@optionprefix_bold', 1)
+;  hi htmlTagName gui=NONE cterm=NONE
+;  hi htmlSpecialTagName gui=NONE cterm=NONE
+;  hi htmlBold gui=NONE cterm=NONE
+;  hi htmlBoldUnderline gui=underline cterm=underline
+;  hi htmlBoldItalic gui=italic cterm=italic
+;  hi htmlBoldUnderlineItalic gui=underline,italic cterm=underline,italic
+;  hi docbkKeyword gui=NONE cterm=NONE
+;  hi vimCommentTitle gui=NONE cterm=NONE
+;  hi clojureRegexpCharClass gui=NONE cterm=NONE
+;  hi pythonDottedName gui=NONE cterm=NONE
+;  hi jsExportDefault gui=NONE cterm=NONE
+;  hi jsFutureKeys gui=NONE cterm=NONE
+;  hi markdownH1 gui=NONE cterm=NONE
+;  hi markdownH2 gui=NONE cterm=NONE
+;  hi markdownH3 gui=NONE cterm=NONE
+;  hi markdownH4 gui=NONE cterm=NONE
+;endif
+;endverbatim
+;Variant: gui 256
+;; }}}
+;#endif

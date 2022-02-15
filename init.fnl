@@ -16,3 +16,10 @@
 (vim.cmd "colorscheme fennec")
 
 ;(vim.cmd "autocmd BufWritePost plugins.lua PackerCompile")
+
+; TIPS AND TRICKS:
+;
+; use Ctrl+z to go to terminal
+; use fg to go back to nvim
+;
+; :messages - to show logs of inspect 

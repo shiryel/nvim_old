@@ -14,6 +14,7 @@
      ;; Highlight
      ; TODO: remove when elixir TS comes back working
      (use "elixir-editors/vim-elixir")
+     (use "alaviss/nim.nvim")
 
      ; :h nvim-treesitter-commands
      ; Its recommended to update the parsers on update
@@ -79,6 +80,7 @@
     ;:ignore_install ["elixir"]
 		:highlight {
 			:enable true
+      :additional_vim_regex_highlighting true
       :disable ["elixir"]
 		}
 		:incremental_selection {
@@ -93,7 +95,7 @@
 		}
 		:indent {
 			:enable true
-      ;:disable ["elixir"]
+      :disable ["gdscript"] ; gdscript ident dont work
       }}))
 
 (let [g (require :gitsigns)] 
