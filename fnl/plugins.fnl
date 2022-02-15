@@ -14,7 +14,6 @@
      ;; Highlight
      ; TODO: remove when elixir TS comes back working
      (use "elixir-editors/vim-elixir")
-     (use "alaviss/nim.nvim")
 
      ; :h nvim-treesitter-commands
      ; Its recommended to update the parsers on update
@@ -39,7 +38,8 @@
      ;(use "hoschi/yode-nvim")
 
      ;; Lisp
-     (use "vlime/vlime" {"rtp" "vim/"}))))
+     ;(use "vlime/vlime" {"rtp" "vim/"})
+  )))
 
 (let [compe (require :compe)]
   (compe.setup {
