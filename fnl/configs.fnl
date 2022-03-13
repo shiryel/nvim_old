@@ -22,9 +22,9 @@
 ;; Spaces and Tabs
 (set o.syntax "enable")
 (set o.expandtab true)
-(set o.tabstop 2)
-(set o.softtabstop 2)
-(set o.shiftwidth 2)
+(set o.tabstop 2) ; Spaces that a tab counts for
+(set o.softtabstop 2) ; Spaces that a tab counts when editing
+(set o.shiftwidth 2) ; Spaces to use for each step of (auto)indent
 
 ;; UI Config
 (set o.encoding "utf8")
@@ -234,7 +234,12 @@
 (c "au BufRead,BufNewFile *.ex set filetype=elixir")
 (c "au BufRead,BufNewFile *.exs set filetype=elixir")
 (c "au BufRead,BufNewFile *.slime set filetype=elixir")
+(c "au BufRead,BufNewFile *.zig set filetype=zig")
 
 (c "au FileType elm set tabstop=4")
 (c "au FileType elm set shiftwidth=4")
 (c "au FileType elm set expandtab")
+
+(c "au FileType elm set tabstop=2")
+(c "au FileType elm set shiftwidth=2")
+(c "au FileType gdscript set noexpandtab")

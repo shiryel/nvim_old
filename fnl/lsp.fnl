@@ -23,6 +23,7 @@
                          autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
                          augroup END
                          " {}))
+                         ;autocmd BufWritePost *.zig %s;^\\(\\s\\+\\);\\=repeat(' ', len(submatch(0))/2);g
     ; else
     (when client.resolved_capabilities.document_range_formatting
       (buf_set_keymap "n" "<leader>f" "<cmd>lua vim.lsp.buf.range_formatting()<CR>" opts)))
@@ -75,17 +76,20 @@
     (values capabilities)))
 
 (let [lspconfig (require :lspconfig)]
+  ; ELIXIR
   (lspconfig.elixirls.setup {
     :on_attach on_attach
     :capabilities (capabilities)
     :cmd {1 "elixir-ls"}
   })
+  ; GDSCRIPT
   (lspconfig.gdscript.setup {
     :on_attach on_attach
     :capabilities (capabilities)
     :flags {
       :debounce_text_changes 50}
   })
+  ; GDSCRIPT formater
   (lspconfig.efm.setup {
     :on_attach on_attach
     :capabilities (capabilities)
@@ -104,11 +108,25 @@
           :formatStdin true}}}
     :cmd {1 "efm-langserver"}
   })
+  ; ZIG
   (lspconfig.zls.setup {
     :on_attach on_attach
     :capabilities (capabilities)
     :cmd {1 "zls"}
   })
+  ; NIX
+  (lspconfig.rnix.setup {
+    :on_attach on_attach
+    :capabilities (capabilities)
+    :cmd {1 "rnix-lsp"}
+  })
+  ; C
+  (lspconfig.clangd.setup {
+    :on_attach on_attach
+    :capabilities (capabilities)
+    :cmd {1 "clangd"}
+  })
+  ; HASKELL
   (lspconfig.hls.setup {
     :on_attach on_attach
     :capabilities (capabilities)
