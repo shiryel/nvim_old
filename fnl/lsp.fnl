@@ -17,13 +17,14 @@
   (if client.resolved_capabilities.document_formatting
     (do
       (buf_set_keymap "n" "<leader>f" "<cmd>lua vim.lsp.buf.formatting()<CR>" opts)
-      (vim.api.nvim_exec "
-                         augroup Format
-                         autocmd! * <buffer>
-                         autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
-                         augroup END
-                         " {}))
-                         ;autocmd BufWritePost *.zig %s;^\\(\\s\\+\\);\\=repeat(' ', len(submatch(0))/2);g
+      ;(vim.api.nvim_exec "
+      ;                   augroup Format
+      ;                   autocmd! * <buffer>
+      ;                   autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()
+      ;                   augroup END
+      ;                   " {})
+      ;                   ;autocmd BufWritePost *.zig %s;^\\(\\s\\+\\);\\=repeat(' ', len(submatch(0))/2);g
+    )
     ; else
     (when client.resolved_capabilities.document_range_formatting
       (buf_set_keymap "n" "<leader>f" "<cmd>lua vim.lsp.buf.range_formatting()<CR>" opts)))
