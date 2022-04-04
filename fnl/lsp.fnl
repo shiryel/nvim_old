@@ -115,6 +115,12 @@
     :capabilities (capabilities)
     :cmd {1 "zls"}
   })
+  ; KOTLIN
+  (lspconfig.kotlin_language_server.setup {
+    :on_attach on_attach
+    :capabilities (capabilities)
+    :cmd {1 "kotlin-language-server"}
+  })
   ; NIX
   (lspconfig.rnix.setup {
     :on_attach on_attach

@@ -76,8 +76,15 @@
 ; TODO: elixir is not working on treesitter
 (let [ts (require :nvim-treesitter.configs)]
 	(ts.setup {
-		:ensure_installed "maintained"
-    ;:ignore_install ["elixir"]
+		:ensure_installed [
+      "elixir" 
+      "fennel" 
+      "nix" 
+      "c" 
+      "haskell" 
+      "kotlin" 
+      "zig" 
+      "gdscript"]
 		:highlight {
 			:enable true
       :additional_vim_regex_highlighting true
@@ -85,7 +92,6 @@
 		}
 		:incremental_selection {
 			:enable true
-      ;:disable ["elixir"]
 			:keymaps {
 			  :init_selection "gnn"
 			  :node_incremental "grn"
